@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Reachsei Badminton</title>
+
+  <link rel="shortcut icon" href="https://img.icons8.com/?size=100&id=13010&format=png&color=000000">
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <!-- Navbar (optional: reuse your existing navbar here) -->
+  <nav class="navbar">
+    <!-- your navbar HTML -->
+  </nav>
+
+  <!-- Product Detail Section -->
+  <main class="product-detail-section">
+    <div id="productDetail"></div>
+  </main>
+
+  <footer>
+    <!-- your footer HTML -->
+  </footer>
+
+  <script>
+     let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    // ===== PRODUCTS DATA (same as in main page, or import it from a separate file) =====
+    const products = [
+  // ================= New_product =================
+  { id: 61, name: "Babu Limited Edition Shirt", price: 19.99, image: "./img-new_product/babushirt.jpg", category: "new_product", size: ["S","M","L"], color:["Red","White"], inStock: 20, description:"Limited edition shirt, very comfortable and stylish." },
+  { id: 62, name: "Korea Shirt", price: 9.99, image: "./img-new_product/korea_shirt.jpg", category: "new_product", size: ["S","M","L"], color:["Blue","White"], inStock: 15, description:"Official Korea badminton shirt, lightweight and breathable." },
+  { id: 63, name: "Yonex Power Cushion Shoes", price: 65.99, image: "./img-new_product/shoe1.jpg", category: "new_product", size: [38,39,40,41,42], color:["Black","White"], inStock: 12, description:"High performance Yonex shoes with power cushion for extra support." },
+  { id: 64, name: "Yonex Power Cushion Aerus X Shoes", price: 65.99, image: "./img-new_product/shoe2.jpg", category: "new_product", size: [38,39,40,41,42], color:["Blue","White"], inStock: 10, description:"Ultra-light badminton shoes for speed and agility." },
+
+  // ================= T-SHIRTS =================
+  { id: 1, name: "Yonex White Shirt", price: 5, image: "./img-tshirt/white_yonex_shirt.png", category: "tshirt", size: ["S","M","L"], color:["White"], inStock: 30, description:"Classic Yonex white shirt, soft and breathable." },
+  { id: 2, name: "Yonex Black Shirt", price: 5, image: "./img-tshirt/shirtblack-t31.png", category: "tshirt", size: ["S","M","L"], color:["Black"], inStock: 25, description:"Comfortable black shirt for training and competition." },
+  { id: 3, name: "Yonex Pink Shirt", price: 5, image: "./img-tshirt/pinkshirt-t392.png", category: "tshirt", size: ["S","M","L"], color:["Pink"], inStock: 20, description:"Yonex pink shirt, perfect for female players." },
+  { id: 4, name: "Yonex Green Shirt", price: 5, image: "./img-tshirt/shirt-t33.png", category: "tshirt", size: ["S","M","L"], color:["Green"], inStock: 15, description:"Green Yonex shirt with lightweight material." },
+  { id: 5, name: "Yonex Shirt Y1", price: 5, image: "./img-tshirt/y1.jpg", category: "tshirt", size: ["S","M","L"], color:["Blue"], inStock: 10, description:"Yonex Y1 shirt, durable and comfortable." },
+  { id: 6, name: "Yonex Shirt Y2", price: 5, image: "./img-tshirt/y2.jpg", category: "tshirt", size: ["S","M","L"], color:["Yellow"], inStock: 12, description:"Yonex Y2 shirt with moisture-wicking fabric." },
+  { id: 7, name: "Yonex Shirt Y3", price: 5, image: "./img-tshirt/y3.jpg", category: "tshirt", size: ["S","M","L"], color:["Red"], inStock: 8, description:"Yonex Y3 shirt, lightweight and breathable." },
+  { id: 8, name: "Yonex Shirt Y4", price: 5, image: "./img-tshirt/y4.jpg", category: "tshirt", size: ["S","M","L"], color:["Black"], inStock: 7, description:"Yonex Y4 shirt, classic design." },
+
+  // ================= SHORTS & DRESSES =================
+  { id: 9, name: "Yonex Pink Dress", price: 7, image: "./img-short/dress1.jpg", category: "short", size: ["S","M","L"], color:["Pink"], inStock: 15, description:"Lightweight pink dress for badminton." },
+  { id: 10, name: "Yonex LightBlue Dress", price: 7, image: "./img-short/dress2.jpg", category: "short", size: ["S","M","L"], color:["Light Blue"], inStock: 10, description:"Light blue dress, comfortable and flexible." },
+  { id: 11, name: "Yonex White Dress", price: 7, image: "./img-short/dress3.jpg", category: "short", size: ["S","M","L"], color:["White"], inStock: 12, description:"Classic Yonex white dress for women." },
+  { id: 12, name: "Yonex Black Dress", price: 7, image: "./img-short/dress4.jpg", category: "short", size: ["S","M","L"], color:["Black"], inStock: 9, description:"Black dress, stylish and comfortable." },
+  { id: 13, name: "Yonex MilkWhite Short", price: 7, image: "./img-short/short1.jpg", category: "short", size: ["S","M","L"], color:["White"], inStock: 20, description:"Milk white shorts for training." },
+  { id: 14, name: "Yonex Blue Short", price: 7, image: "./img-short/short2.jpg", category: "short", size: ["S","M","L"], color:["Blue"], inStock: 15, description:"Blue shorts, breathable and flexible." },
+  { id: 15, name: "Yonex White Short", price: 7, image: "./img-short/short3.jpg", category: "short", size: ["S","M","L"], color:["White"], inStock: 10, description:"White shorts, classic badminton style." },
+  { id: 16, name: "Yonex Black Short", price: 7, image: "./img-short/short4.jpg", category: "short", size: ["S","M","L"], color:["Black"], inStock: 8, description:"Black shorts, comfortable for all-day play." },
+
+  // ================= SHOES =================
+  { id: 17, name: "Yonex Black/White Shoes", price: 45, image: "./img-shoes/shoes1.jpg", category: "shoes", size: [38,39,40,41,42], color:["Black","White"], inStock: 12, description:"Yonex shoes for stability and grip." },
+  { id: 18, name: "Yonex White/Gold Shoes", price: 45, image: "./img-shoes/shoes2.jpg", category: "shoes", size: [38,39,40,41,42], color:["White","Gold"], inStock: 10, description:"Elegant white and gold badminton shoes." },
+  { id: 19, name: "Yonex Orange/White Shoes", price: 45, image: "./img-shoes/shoes3.jpg", category: "shoes", size: [38,39,40,41,42], color:["Orange","White"], inStock: 15, description:"Yonex shoes with vibrant orange design." },
+  { id: 20, name: "Yonex White/Pink Shoes", price: 45, image: "./img-shoes/shoes4.jpg", category: "shoes", size: [38,39,40,41,42], color:["White","Pink"], inStock: 12, description:"Lightweight shoes with pink accents." },
+  { id: 21, name: "Yonex Black/White Shoes", price: 45, image: "./img-shoes/shoes5.jpg", category: "shoes", size: [38,39,40,41,42], color:["Black","White"], inStock: 8, description:"Comfortable badminton shoes for daily training." },
+  { id: 22, name: "Yonex White/Black Shoes", price: 45, image: "./img-shoes/shoes6.jpg", category: "shoes", size: [38,39,40,41,42], color:["White","Black"], inStock: 10, description:"Durable Yonex shoes for indoor courts." },
+  { id: 23, name: "Yonex Green/Black Shoes", price: 45, image: "./img-shoes/shoes7.jpg", category: "shoes", size: [38,39,40,41,42], color:["Green","Black"], inStock: 7, description:"Green and black shoes for training sessions." },
+  { id: 24, name: "Yonex White Shoes", price: 45, image: "./img-shoes/shoes8.jpg", category: "shoes", size: [38,39,40,41,42], color:["White"], inStock: 9, description:"Classic white Yonex shoes." },
+
+  // ================= RACKETS =================
+  { id: 25, name: "Felet Pro Series Woven 8000", price: 135, image: "./img-rocket/felet1.jpg", category: "rackets", size: ["Standard"], color:["Black"], inStock: 5, description:"High-end Felet racket for professional players." },
+  { id: 26, name: "Felet Pro Series Woven 1000", price: 125, image: "./img-rocket/felet2.jpg", category: "rackets", size: ["Standard"], color:["Black"], inStock: 8, description:"Felet racket with excellent control and power." },
+  { id: 27, name: "Felet Pro Series TJ 1000", price: 125, image: "./img-rocket/felet3.jpg", category: "rackets", size: ["Standard"], color:["Red"], inStock: 7, description:"Durable TJ series racket for serious players." },
+  { id: 28, name: "Felet Pro Series Woven 1000+", price: 135, image: "./img-rocket/felet4.jpg", category: "rackets", size: ["Standard"], color:["Blue"], inStock: 5, description:"Advanced Felet racket for powerful smashes." },
+  { id: 29, name: "Li-Ning Axforce 90", price: 90, image: "./img-rocket/lining1.jpg", category: "rackets", size: ["Standard"], color:["Black"], inStock: 12, description:"Li-Ning Axforce racket, lightweight and strong." },
+  { id: 30, name: "Li-Ning Axforce 50", price: 90, image: "./img-rocket/lining2.jpg", category: "rackets", size: ["Standard"], color:["Blue"], inStock: 10, description:"Durable Li-Ning racket for casual players." },
+  { id: 31, name: "Li-Ning Axforce 40", price: 90, image: "./img-rocket/lining3.jpg", category: "rackets", size: ["Standard"], color:["Red"], inStock: 8, description:"Axforce 40 for beginners and intermediate players." },
+  { id: 32, name: "Li-Ning Axforce 100", price: 90, image: "./img-rocket/lining4.jpg", category: "rackets", size: ["Standard"], color:["White"], inStock: 9, description:"High-quality racket with excellent balance." },
+
+  // ================= SOCKS =================
+  { id: 33, name: "Victor Short Socks", price: 3.5, image: "./img-socks/victor1.jpg", category: "socks", size:["S","M","L"], color:["White"], inStock: 50, description:"Comfortable short socks for badminton." },
+  { id: 34, name: "Victor Short Socks", price: 3.5, image: "./img-socks/victor2.jpg", category: "socks", size:["S","M","L"], color:["Black"], inStock: 45, description:"Soft short socks, perfect for indoor courts." },
+  { id: 35, name: "Victor Short Socks", price: 3.5, image: "./img-socks/victor3.jpg", category: "socks", size:["S","M","L"], color:["Blue"], inStock: 40, description:"Short socks with extra cushioning." },
+  { id: 36, name: "Victor Short Socks", price: 3.5, image: "./img-socks/victor4.jpg", category: "socks", size:["S","M","L"], color:["Red"], inStock: 35, description:"Breathable Victor short socks." },
+  { id: 37, name: "Yonex Long Socks", price: 3.5, image: "./img-socks/yonex1.jpg", category: "socks", size:["S","M","L"], color:["White"], inStock: 50, description:"Long socks for better ankle support." },
+  { id: 38, name: "Yonex Long Socks", price: 3.5, image: "./img-socks/yonex2.jpg", category: "socks", size:["S","M","L"], color:["Black"], inStock: 45, description:"Durable Yonex long socks." },
+  { id: 39, name: "Yonex Long Socks", price: 3.5, image: "./img-socks/yonex3.jpg", category: "socks", size:["S","M","L"], color:["Blue"], inStock: 40, description:"Comfortable long socks for badminton." },
+  { id: 40, name: "Yonex Long Socks", price: 3.5, image: "./img-socks/yonex4.jpg", category: "socks", size:["S","M","L"], color:["Red"], inStock: 35, description:"High-quality Yonex long socks." },
+
+  // ================= BAGS =================
+  { id: 41, name: "Victor White Bag", price: 29.99, image: "./img-bag/bag1.jpg", category: "bags", size:["One Size"], color:["White"], inStock: 10, description:"Spacious Victor bag for rackets and gear." },
+  { id: 42, name: "Victor White Bag", price: 29.99, image: "./img-bag/bag2.jpg", category: "bags", size:["One Size"], color:["White"], inStock: 8, description:"Durable bag for sports equipment." },
+  { id: 43, name: "Victor White Bag", price: 29.99, image: "./img-bag/bag3.jpg", category: "bags", size:["One Size"], color:["White"], inStock: 12, description:"Classic Victor bag, perfect for players." },
+  { id: 44, name: "Victor Tournament Bag", price: 29.99, image: "./img-bag/bag4.jpg", category: "bags", size:["One Size"], color:["Black"], inStock: 7, description:"Tournament bag with multiple compartments." },
+  { id: 45, name: "Victor Blue Tournament", price: 29.99, image: "./img-bag/bag5.jpg", category: "bags", size:["One Size"], color:["Blue"], inStock: 9, description:"Blue Victor tournament bag, durable and light." },
+  { id: 46, name: "Victor Red Tournament", price: 29.99, image: "./img-bag/bag6.jpg", category: "bags", size:["One Size"], color:["Red"], inStock: 6, description:"Red tournament bag for easy organization." },
+  { id: 47, name: "Victor Purple Tournament", price: 29.99, image: "./img-bag/bag7.jpg", category: "bags", size:["One Size"], color:["Purple"], inStock: 5, description:"Purple Victor bag, stylish and functional." },
+  { id: 48, name: "Victor Orange Tournament", price: 29.99, image: "./img-bag/bag8.jpg", category: "bags", size:["One Size"], color:["Orange"], inStock: 4, description:"Bright orange bag for tournaments." },
+
+  // ================= ACCESSORIES =================
+  { id: 49, name: "Victor Shuttles", price: 16.99, image: "./img-other/victor_shuttle1.jpg", category: "accessories", size:["Standard"], color:["White"], inStock: 50, description:"High-quality shuttlecocks for professional play." },
+  { id: 50, name: "Victor Shuttles", price: 16.99, image: "./img-other/victor_shuttle2.jpg", category: "accessories", size:["Standard"], color:["Yellow"], inStock: 45, description:"Durable shuttlecocks for training." },
+  { id: 51, name: "Lucksis Shuttles Blue", price: 16.99, image: "./img-other/lucksis_shuttle_blue.jpg", category: "accessories", size:["Standard"], color:["Blue"], inStock: 40, description:"Blue shuttlecocks for advanced players." },
+  { id: 52, name: "Lucksis Shuttles Red", price: 16.99, image: "./img-other/lucksis_shuttles_red.jpg", category: "accessories", size:["Standard"], color:["Red"], inStock: 35, description:"Red shuttlecocks for tournament play." },
+  { id: 53, name: "Victor Grip Anti Slip", price: 6.5, image: "./img-other/grid.jpg", category: "accessories", size:["One Size"], color:["Black"], inStock: 20, description:"Anti-slip grip for better control." },
+  { id: 54, name: "Victor Badminton Grip", price: 2.5, image: "./img-other/grip2.jpg", category: "accessories", size:["One Size"], color:["White"], inStock: 25, description:"Simple grip for badminton rackets." },
+  { id: 55, name: "Yonex Super Grip Pure", price: 3.5, image: "./img-other/grip3.jpg", category: "accessories", size:["One Size"], color:["Blue"], inStock: 15, description:"Yonex super grip for strong hold." },
+  { id: 56, name: "Yonex Wristband", price: 4.99, image: "./img-other/Yonex_wrip.jpg", category: "accessories", size:["One Size"], color:["White"], inStock: 30, description:"Soft wristband to absorb sweat while playing." },
+
+ // ================= T-SHIRTS DETAILED =================
+  { id: 100, name: "Yonex White Shirt", price: 5, image: "./img-tshirt/white_yonex_shirt.png", category: "tshirt_y", size: ["S","M","L"], color:["White"], inStock: 30, description:"Classic Yonex white shirt, soft and breathable." },
+  { id: 101, name: "Yonex Black Shirt", price: 5, image: "./img-tshirt/shirtblack-t31.png", category: "tshirt_y", size: ["S","M","L"], color:["Black"], inStock: 25, description:"Comfortable black shirt for training and competition." },
+  { id: 102, name: "Yonex Pink Shirt", price: 5, image: "./img-tshirt/pinkshirt-t392.png", category: "tshirt_y", size: ["S","M","L"], color:["Pink"], inStock: 20, description:"Yonex pink shirt, perfect for female players." },
+  { id: 103, name: "Yonex Green Shirt", price: 5, image: "./img-tshirt/shirt-t33.png", category: "tshirt_y", size: ["S","M","L"], color:["Green"], inStock: 15, description:"Green Yonex shirt with lightweight material." },
+  { id: 104, name: "Yonex Shirt Y1", price: 5, image: "./img-tshirt/y1.jpg", category: "tshirt_y", size: ["S","M","L"], color:["Blue"], inStock: 10, description:"Yonex Y1 shirt, durable and comfortable." },
+  { id: 105, name: "Yonex Shirt Y2", price: 5, image: "./img-tshirt/y2.jpg", category: "tshirt_y", size: ["S","M","L"], color:["Yellow"], inStock: 12, description:"Yonex Y2 shirt with moisture-wicking fabric." },
+  { id: 106, name: "Yonex Shirt Y3", price: 5, image: "./img-tshirt/y3.jpg", category: "tshirt_y", size: ["S","M","L"], color:["Red"], inStock: 8, description:"Yonex Y3 shirt, lightweight and breathable." },
+  { id: 107, name: "Yonex Shirt Y4", price: 5, image: "./img-tshirt/y4.jpg", category: "tshirt_y", size: ["S","M","L"], color:["Black"], inStock: 7, description:"Yonex Y4 shirt, classic design." },
+  { id: 108, name: "Yonex Shirt Y5", price: 5, image: "./img-tshirt/y5.jpg", category: "tshirt_y", size: ["S","M","L"], color:["White"], inStock: 10, description:"Yonex Y5 shirt, soft and breathable." },
+  { id: 109, name: "Yonex Shirt Y6", price: 5, image: "./img-tshirt/y6.jpg", category: "tshirt_y", size: ["S","M","L"], color:["Blue"], inStock: 12, description:"Yonex Y6 shirt with classic style." },
+  { id: 110, name: "Yonex Shirt Y7", price: 5, image: "./img-tshirt/y7.jpg", category: "tshirt_y", size: ["S","M","L"], color:["Red"], inStock: 8, description:"Yonex Y7 shirt, comfortable for training." },
+  { id: 111, name: "Yonex Shirt Y8", price: 5, image: "./img-tshirt/y8.jpg", category: "tshirt_y", size: ["S","M","L"], color:["Black"], inStock: 7, description:"Yonex Y8 shirt, classic design." },
+  { id: 112, name: "Yonex Shirt Y9", price: 5, image: "./img-tshirt/y9.jpg", category: "tshirt_y", size: ["S","M","L"], color:["White"], inStock: 10, description:"Yonex Y9 shirt, breathable fabric." },
+  { id: 113, name: "Yonex Shirt Y10", price: 5, image: "./img-tshirt/y10.jpg", category: "tshirt_y", size: ["S","M","L"], color:["Blue"], inStock: 12, description:"Yonex Y10 shirt, lightweight and comfortable." },
+  { id: 114, name: "Yonex Shirt Y11", price: 5, image: "./img-tshirt/y11.jpg", category: "tshirt_y", size: ["S","M","L"], color:["Red"], inStock: 8, description:"Yonex Y11 shirt, perfect for indoor training." },
+  { id: 115, name: "Yonex Shirt Y12", price: 5, image: "./img-tshirt/y12.jpg", category: "tshirt_y", size: ["S","M","L"], color:["Black"], inStock: 7, description:"Yonex Y12 shirt, classic style." },
+
+  // ================= Li-Ning =================
+  { id: 116, name: "Li-Ning Shirt L1", price: 10, image: "./img-tshirt/l1.jpg", category: "tshirt_l", size: ["S","M","L"], color:["White"], inStock: 20, description:"Li-Ning L1 shirt, breathable material." },
+  { id: 117, name: "Li-Ning Shirt L2", price: 12, image: "./img-tshirt/l2.jpg", category: "tshirt_l", size: ["S","M","L"], color:["Blue"], inStock: 15, description:"Li-Ning L2 shirt, stylish and comfortable." },
+  { id: 118, name: "Li-Ning Shirt L3", price: 6, image: "./img-tshirt/l3.jpg", category: "tshirt_l", size: ["S","M","L"], color:["Red"], inStock: 10, description:"Li-Ning L3 shirt, lightweight and breathable." },
+  { id: 119, name: "Li-Ning Shirt L4", price: 6, image: "./img-tshirt/l4.jpg", category: "tshirt_l", size: ["S","M","L"], color:["Yellow"], inStock: 10, description:"Li-Ning L4 shirt, classic design." },
+  { id: 120, name: "Li-Ning Shirt L5", price: 6, image: "./img-tshirt/l5.jpg", category: "tshirt_l", size: ["S","M","L"], color:["Black"], inStock: 12, description:"Li-Ning L5 shirt, comfortable training shirt." },
+  { id: 121, name: "Li-Ning Shirt L6", price: 6, image: "./img-tshirt/l6.jpg", category: "tshirt_l", size: ["S","M","L"], color:["White"], inStock: 8, description:"Li-Ning L6 shirt, lightweight and soft." },
+  { id: 122, name: "Li-Ning Shirt L7", price: 6, image: "./img-tshirt/l7.jpg", category: "tshirt_l", size: ["S","M","L"], color:["Blue"], inStock: 10, description:"Li-Ning L7 shirt, comfortable fit." },
+  { id: 123, name: "Li-Ning Shirt L8", price: 6, image: "./img-tshirt/l8.jpg", category: "tshirt_l", size: ["S","M","L"], color:["Red"], inStock: 7, description:"Li-Ning L8 shirt, classic training shirt." },
+
+  // ================= Victor =================
+  { id: 124, name: "Victor Shirt V1", price: 10, image: "./img-tshirt/v1.jpg", category: "tshirt_v", size: ["S","M","L"], color:["White"], inStock: 12, description:"Victor V1 shirt, breathable and lightweight." },
+  { id: 125, name: "Victor Shirt V2", price: 10, image: "./img-tshirt/v2.jpg", category: "tshirt_v", size: ["S","M","L"], color:["Black"], inStock: 15, description:"Victor V2 shirt, comfortable and stylish." },
+  { id: 126, name: "Victor Shirt V3", price: 10, image: "./img-tshirt/v3.jpg", category: "tshirt_v", size: ["S","M","L"], color:["Blue"], inStock: 10, description:"Victor V3 shirt, perfect for training." },
+  { id: 127, name: "Victor Shirt V4", price: 10, image: "./img-tshirt/v4.jpg", category: "tshirt_v", size: ["S","M","L"], color:["Red"], inStock: 8, description:"Victor V4 shirt, classic design." },
+  { id: 128, name: "Victor Shirt V5", price: 10, image: "./img-tshirt/v5.jpg", category: "tshirt_v", size: ["S","M","L"], color:["White"], inStock: 10, description:"Victor V5 shirt, breathable fabric." },
+  { id: 129, name: "Victor Shirt V6", price: 10, image: "./img-tshirt/v6.jpg", category: "tshirt_v", size: ["S","M","L"], color:["Black"], inStock: 7, description:"Victor V6 shirt, lightweight and soft." },
+  { id: 130, name: "Victor Shirt V7", price: 10, image: "./img-tshirt/v7.jpg", category: "tshirt_v", size: ["S","M","L"], color:["Blue"], inStock: 8, description:"Victor V7 shirt, comfortable training shirt." },
+  { id: 131, name: "Victor Shirt V8", price: 10, image: "./img-tshirt/v8.jpg", category: "tshirt_v", size: ["S","M","L"], color:["Red"], inStock: 5, description:"Victor V8 shirt, classic style." },
+
+  // ================= Coach / Mizuno =================
+  { id: 132, name: "Coach T-shirt A1", price: 10, image: "./img-tshirt/a1.jpg", category: "tshirt_m", size: ["S","M","L"], color:["White"], inStock: 10, description:"Coach A1 shirt, lightweight and breathable." },
+  { id: 133, name: "Coach T-shirt A2", price: 10, image: "./img-tshirt/a2.jpg", category: "tshirt_m", size: ["S","M","L"], color:["Blue"], inStock: 12, description:"Coach A2 shirt, classic design." },
+  { id: 134, name: "Coach T-shirt A3", price: 10, image: "./img-tshirt/a3.jpg", category: "tshirt_m", size: ["S","M","L"], color:["Red"], inStock: 8, description:"Coach A3 shirt, comfortable fit." },
+  { id: 135, name: "Coach T-shirt A4", price: 10, image: "./img-tshirt/a4.jpg", category: "tshirt_m", size: ["S","M","L"], color:["Black"], inStock: 7, description:"Coach A4 shirt, classic style." },
+  { id: 136, name: "Coach T-shirt A5", price: 10, image: "./img-tshirt/a5.jpg", category: "tshirt_m", size: ["S","M","L"], color:["White"], inStock: 9, description:"Coach A5 shirt, breathable material." },
+  { id: 137, name: "Coach T-shirt A6", price: 10, image: "./img-tshirt/a6.jpg", category: "tshirt_m", size: ["S","M","L"], color:["Blue"], inStock: 8, description:"Coach A6 shirt, soft and comfortable." },
+  { id: 138, name: "Coach T-shirt A7", price: 10, image: "./img-tshirt/a7.jpg", category: "tshirt_m", size: ["S","M","L"], color:["Red"], inStock: 6, description:"Coach A7 shirt, classic design." },
+  { id: 139, name: "Coach T-shirt A8", price: 10, image: "./img-tshirt/a8.jpg", category: "tshirt_m", size: ["S","M","L"], color:["Black"], inStock: 5, description:"Coach A8 shirt, comfortable training shirt." },
+  { id: 140, name: "Babu Limited Edition Shirt", price: 19.99, image: "./img-new_product/babushirt.jpg", category: "new_product", size: ["S","M","L"], color:["Red","White"], inStock: 20, description:"Limited edition shirt, very comfortable and stylish." },
+  
+   // ================= Yonex =================
+  { id: 200, name: "Yonex Dress 1", price: 7.99, image: "./img-short/dy1.jpg", category: "short_y", size:["S","M","L"], color:["White"], inStock:10, description:"Yonex Dress 1, lightweight and stylish." },
+  { id: 201, name: "Yonex Dress 2", price: 7.99, image: "./img-short/dy2.jpg", category: "short_y", size:["S","M","L"], color:["White"], inStock:10, description:"Yonex Dress 2, perfect for casual play." },
+  { id: 202, name: "Yonex Dress 3", price: 7.99, image: "./img-short/dy3.jpg", category: "short_y", size:["S","M","L"], color:["White"], inStock:10, description:"Yonex Dress 3, breathable material." },
+  { id: 203, name: "Yonex Dress 4", price: 7.99, image: "./img-short/dy4.jpg", category: "short_y", size:["S","M","L"], color:["White"], inStock:10, description:"Yonex Dress 4, comfortable fit." },
+  { id: 204, name: "Yonex Dress 5", price: 7.99, image: "./img-short/dy5.jpg", category: "short_y", size:["S","M","L"], color:["White"], inStock:10, description:"Yonex Dress 5, soft fabric." },
+  { id: 205, name: "Yonex Dress 6", price: 7.99, image: "./img-short/dy6.jpg", category: "short_y", size:["S","M","L"], color:["White"], inStock:10, description:"Yonex Dress 6, ideal for training." },
+  { id: 206, name: "Yonex Dress 7", price: 7.99, image: "./img-short/dy7.jpg", category: "short_y", size:["S","M","L"], color:["White"], inStock:10, description:"Yonex Dress 7, flexible and durable." },
+  { id: 207, name: "Yonex Dress 8", price: 7.99, image: "./img-short/dy8.jpg", category: "short_y", size:["S","M","L"], color:["White"], inStock:10, description:"Yonex Dress 8, stylish design." },
+  { id: 208, name: "Yonex Dress 9", price: 7.99, image: "./img-short/dy9.jpg", category: "short_y", size:["S","M","L"], color:["White"], inStock:10, description:"Yonex Dress 9, lightweight material." },
+  { id: 209, name: "Yonex Dress 10", price: 7.99, image: "./img-short/dy10.jpg", category: "short_y", size:["S","M","L"], color:["White"], inStock:10, description:"Yonex Dress 10, comfortable fit." },
+  { id: 210, name: "Yonex Dress 11", price: 7.99, image: "./img-short/dy11.jpg", category: "short_y", size:["S","M","L"], color:["White"], inStock:10, description:"Yonex Dress 11, breathable and soft." },
+  { id: 211, name: "Yonex Dress 12", price: 7.99, image: "./img-short/dy12.jpg", category: "short_y", size:["S","M","L"], color:["White"], inStock:10, description:"Yonex Dress 12, ideal for sports." },
+
+  // Yonex Shorts
+  { id: 212, name: "Yonex Short 1", price: 7.99, image: "./img-short/sy1.jpg", category: "short_y", size:["S","M","L"], color:["White"], inStock:10, description:"Yonex Short 1, flexible and breathable." },
+  { id: 213, name: "Yonex Short 2", price: 7.99, image: "./img-short/sy2.jpg", category: "short_y", size:["S","M","L"], color:["White"], inStock:10, description:"Yonex Short 2, comfortable fit." },
+  { id: 214, name: "Yonex Short 3", price: 7.99, image: "./img-short/sy3.jpg", category: "short_y", size:["S","M","L"], color:["White"], inStock:10, description:"Yonex Short 3, lightweight fabric." },
+  { id: 215, name: "Yonex Short 4", price: 7.99, image: "./img-short/sy4.jpg", category: "short_y", size:["S","M","L"], color:["White"], inStock:10, description:"Yonex Short 4, perfect for training." },
+  { id: 216, name: "Yonex Short 5", price: 7.99, image: "./img-short/sy5.jpg", category: "short_y", size:["S","M","L"], color:["White"], inStock:10, description:"Yonex Short 5, breathable and soft." },
+  { id: 217, name: "Yonex Short 6", price: 7.99, image: "./img-short/sy6.jpg", category: "short_y", size:["S","M","L"], color:["White"], inStock:10, description:"Yonex Short 6, ideal for sports." },
+  { id: 218, name: "Yonex Short 7", price: 7.99, image: "./img-short/sy7.jpg", category: "short_y", size:["S","M","L"], color:["White"], inStock:10, description:"Yonex Short 7, flexible and durable." },
+  { id: 219, name: "Yonex Short 8", price: 7.99, image: "./img-short/sy8.jpg", category: "short_y", size:["S","M","L"], color:["White"], inStock:10, description:"Yonex Short 8, lightweight and stylish." },
+
+  // ================= Victor =================
+  { id: 220, name: "Victor Shirt 1", price: 10, image: "./img-short/sv1.jpg", category: "short_v", size:["S","M","L"], color:["Blue"], inStock:12, description:"Victor Shirt 1, professional design." },
+  { id: 221, name: "Victor Shirt 2", price: 10, image: "./img-short/sv2.jpg", category: "short_v", size:["S","M","L"], color:["Blue"], inStock:12, description:"Victor Shirt 2, durable and soft." },
+  { id: 222, name: "Victor Shirt 3", price: 10, image: "./img-short/sv3.jpg", category: "short_v", size:["S","M","L"], color:["Blue"], inStock:12, description:"Victor Shirt 3, lightweight and breathable." },
+  { id: 223, name: "Victor Shirt 4", price: 10, image: "./img-short/sv4.jpg", category: "short_v", size:["S","M","L"], color:["Blue"], inStock:12, description:"Victor Shirt 4, perfect for training." },
+  { id: 224, name: "Victor Shirt 5", price: 10, image: "./img-short/svv1.jpg", category: "short_v", size:["S","M","L"], color:["Blue"], inStock:12, description:"Victor Shirt 5, flexible and durable." },
+  { id: 225, name: "Victor Shirt 6", price: 10, image: "./img-short/svv2.jpg", category: "short_v", size:["S","M","L"], color:["Blue"], inStock:12, description:"Victor Shirt 6, breathable material." },
+  { id: 226, name: "Victor Shirt 7", price: 10, image: "./img-short/svv3.jpg", category: "short_v", size:["S","M","L"], color:["Blue"], inStock:12, description:"Victor Shirt 7, comfortable fit." },
+  { id: 227, name: "Victor Shirt 8", price: 10, image: "./img-short/svv4.jpg", category: "short_v", size:["S","M","L"], color:["Blue"], inStock:12, description:"Victor Shirt 8, professional style." },
+  { id: 228, name: "Victor Shirt 9", price: 10, image: "./img-short/svv5.jpg", category: "short_v", size:["S","M","L"], color:["Blue"], inStock:12, description:"Victor Shirt 9, durable and breathable." },
+  { id: 229, name: "Victor Shirt 10", price: 10, image: "./img-short/svv6.jpg", category: "short_v", size:["S","M","L"], color:["Blue"], inStock:12, description:"Victor Shirt 10, ideal for sports." },
+  { id: 230, name: "Victor Shirt 11", price: 10, image: "./img-short/svv7.jpg", category: "short_v", size:["S","M","L"], color:["Blue"], inStock:12, description:"Victor Shirt 11, lightweight and soft." },
+  { id: 231, name: "Victor Shirt 12", price: 10, image: "./img-short/svv9.jpg", category: "short_v", size:["S","M","L"], color:["Blue"], inStock:12, description:"Victor Shirt 12, professional fit." },
+  { id: 232, name: "Victor Shirt 13", price: 10, image: "./img-short/yv1.jpg", category: "short_v", size:["S","M","L"], color:["Blue"], inStock:12, description:"Victor Shirt 13, breathable material." },
+
+  // ================= Victor Shirts =================
+{ id: 260, name: "Victor Shirt", price: 10, image: "./img-short/svvv1.jpg", category: "short_v", color: ["Mixed"], size: ["S", "M", "L", "XL", "2XL"], description: "Lightweight Victor badminton shirt designed for comfort and breathability during play." },
+{ id: 261, name: "Victor Shirt", price: 10, image: "./img-short/svvv2.jpg", category: "short_v", color: ["Mixed"], size: ["S", "M", "L", "XL", "2XL"], description: "Comfortable Victor sports shirt made from quick-dry fabric for training and matches." },
+{ id: 262, name: "Victor Shirt", price: 10, image: "./img-short/svvv3.jpg", category: "short_v", color: ["Mixed"], size: ["S", "M", "L", "XL", "2XL"], description: "Breathable Victor shirt offering flexibility and sweat absorption for active players." },
+{ id: 263, name: "Victor Shirt", price: 10, image: "./img-short/svvv4.jpg", category: "short_v", color: ["Mixed"], size: ["S", "M", "L", "XL", "2XL"], description: "Durable Victor badminton shirt suitable for daily training and competitive games." },
+{ id: 264, name: "Victor Shirt", price: 10, image: "./img-short/svvv5.jpg", category: "short_v", color: ["Mixed"], size: ["S", "M", "L", "XL", "2XL"], description: "Stylish Victor sports shirt designed to keep players cool and comfortable on court." },
+{ id: 265, name: "Victor Shirt", price: 10, image: "./img-short/svvv6.jpg", category: "short_v", color: ["Mixed"], size: ["S", "M", "L", "XL", "2XL"], description: "High-quality Victor shirt with soft fabric and athletic fit for badminton players." },
+{ id: 266, name: "Victor Shirt", price: 10, image: "./img-short/svvv7.jpg", category: "short_v", color: ["Mixed"], size: ["S", "M", "L", "XL", "2XL"], description: "Victor performance shirt designed for freedom of movement and long-lasting comfort." },
+
+  // ================= Mizuno =================
+  { id: 240, name: "Mizuno Dress 1", price: 10, image: "./img-short/dm1.jpg", category: "short_m", size:["S","M","L"], color:["Red"], inStock:8, description:"Mizuno Dress 1, lightweight and stylish." },
+  { id: 241, name: "Mizuno Dress 2", price: 10, image: "./img-short/dm2.jpg", category: "short_m", size:["S","M","L"], color:["Red"], inStock:8, description:"Mizuno Dress 2, perfect for sports." },
+  { id: 242, name: "Mizuno Dress 3", price: 10, image: "./img-short/smm2.jpg", category: "short_m", size:["S","M","L"], color:["Red"], inStock:8, description:"Mizuno Dress 3, breathable material." },
+  { id: 243, name: "Mizuno Dress 4", price: 10, image: "./img-short/black-short-mizuno,png.jpg", category: "short_m", size:["S","M","L"], color:["Black"], inStock:8, description:"Mizuno Dress 4, professional design." },
+
+  // ================= Li-Ning =================
+  { id: 250, name: "Li-Ning Shirt 1", price: 10, image: "./img-short/sl1.jpg", category: "short_l", size:["S","M","L"], color:["Red"], inStock:10, description:"Li-Ning Shirt 1, high-quality material." },
+
+
+  // ================= Victor Shoes =================
+  { id: 300, name: "Victor Rocket", price: 10, image: "./img-rocket/rv1.jpg", category: "rocket_v", color:["Blue","Black"], inStock: 15, description:"Victor Rocket, lightweight and comfortable for indoor courts." },
+  { id: 301, name: "Victor Rocket", price: 10, image: "./img-rocket/rv2.jpg", category: "rocket_v", color:["Blue","Black"], inStock: 15, description:"Victor Rocket, breathable mesh design, durable for long sessions." },
+  { id: 302, name: "Victor Rocket", price: 10, image: "./img-rocket/rv3.jpg", category: "rocket_v", color:["Blue","Black"], inStock: 15, description:"Victor Rocket, professional-grade grip and support." },
+  { id: 303, name: "Victor Rocket", price: 10, image: "./img-rocket/rv4.jpg", category: "rocket_v", color:["Blue","Black"], inStock: 15, description:"Victor Rocket, flexible sole and reinforced heel for performance." },
+
+  // ================= Li-Ning Shoes/Rocket =================
+  { id: 304, name: "Li-Ning Rocket 1", price: 10, image: "./img-rocket/lining1.jpg", category: "rocket_l", color:["Red","Black"], inStock: 12, description:"Li-Ning Rocket 1, lightweight and stylish, ideal for training." },
+  { id: 305, name: "Li-Ning Rocket 2", price: 10, image: "./img-rocket/lining2.jpg", category: "rocket_l", color:["Red","Black"], inStock: 12, description:"Li-Ning Rocket 2, breathable mesh, comfortable for long sessions." },
+  { id: 306, name: "Li-Ning Rocket 3", price: 10, image: "./img-rocket/lining3.jpg", category: "rocket_l", color:["Red","Black"], inStock: 12, description:"Li-Ning Rocket 3, durable sole and professional indoor performance." },
+  { id: 307, name: "Li-Ning Rocket 4", price: 10, image: "./img-rocket/lining4.jpg", category: "rocket_l", color:["Red","Black"], inStock: 12, description:"Li-Ning Rocket 4, flexible design, optimal grip and support." },
+  { id: 308, name: "Li-Ning Rocket 5", price: 10, image: "./img-rocket/lining5.jpg", category: "rocket_l", color:["Red","Black"], inStock: 12, description:"Li-Ning Rocket 5, professional training shoe with lightweight construction." },
+  { id: 309, name: "Li-Ning Rocket 6", price: 10, image: "./img-rocket/lining6.jpg", category: "rocket_l", color:["Red","Black"], inStock: 12, description:"Li-Ning Rocket 6, indoor court shoe with high-quality sole." },
+  // ================= Felet Rocket =================
+  { id: 310, name: "Felet Rocket 1", price: 10, image: "./img-rocket/felet1.jpg", category: "rocket_f", color:["Black"], inStock: 10, description:"Felet Rocket 1, durable indoor shoes with excellent grip." },
+  { id: 311, name: "Felet Rocket 2", price: 10, image: "./img-rocket/felet2.jpg", category: "rocket_f", color:["Black"], inStock: 10, description:"Felet Rocket 2, comfortable and lightweight for training." },
+  { id: 312, name: "Felet Rocket 3", price: 10, image: "./img-rocket/felet3.jpg", category: "rocket_f", color:["Black"], inStock: 10, description:"Felet Rocket 3, professional indoor court performance shoe." },
+  { id: 313, name: "Felet Rocket 4", price: 10, image: "./img-rocket/felet4.jpg", category: "rocket_f", color:["Black"], inStock: 10, description:"Felet Rocket 4, flexible sole and comfortable fit." },
+  { id: 314, name: "Felet Rocket 5", price: 10, image: "./img-rocket/felet5.jpg", category: "rocket_f", color:["Black"], inStock: 10, description:"Felet Rocket 5, lightweight and durable for indoor courts." },
+  { id: 315, name: "Felet Rocket 6", price: 10, image: "./img-rocket/felet6.jpg", category: "rocket_f", color:["Black"], inStock: 10, description:"Felet Rocket 6, high grip and performance indoor shoes." },
+  { id: 316, name: "Felet Rocket 7", price: 10, image: "./img-rocket/felet7.jpg", category: "rocket_f", color:["Black"], inStock: 10, description:"Felet Rocket 7, professional-grade court shoes with comfort." },
+
+  // ================= Yonex Shoes =================
+  { id: 400, name: "Yonex Shoes 1", price: 45, image: "./img-shoes/shoes1.jpg", category: "shoes_y", size:[36,37,38,39,40,41,42,43,44], color:["White","Jade Green"], inStock:15, description:"Yonex Power Cushion Strider Flow, lightweight and durable." },
+  { id: 401, name: "Yonex Shoes 2", price: 45, image: "./img-shoes/shoes2.jpg", category: "shoes_y", size:[36,37,38,39,40,41,42,43,44], color:["White","Jade Green"], inStock:15, description:"Yonex Power Cushion Strider Flow, breathable mesh upper for comfort." },
+  { id: 402, name: "Yonex Shoes 3", price: 45, image: "./img-shoes/shoes3.jpg", category: "shoes_y", size:[36,37,38,39,40,41,42,43,44], color:["White","Jade Green"], inStock:15, description:"Yonex Power Cushion Strider Flow, professional indoor court shoe." },
+  { id: 403, name: "Yonex Shoes 4", price: 45, image: "./img-shoes/shoes4.jpg", category: "shoes_y", size:[36,37,38,39,40,41,42,43,44], color:["White","Jade Green"], inStock:15, description:"Yonex Power Cushion Strider Flow, extra cushioning for support." },
+  { id: 404, name: "Yonex Shoes 5", price: 45, image: "./img-shoes/shoes5.jpg", category: "shoes_y", size:[36,37,38,39,40,41,42,43,44], color:["White","Jade Green"], inStock:15, description:"Yonex Power Cushion Strider Flow, ideal for beginners and pros." },
+  { id: 405, name: "Yonex Shoes 6", price: 45, image: "./img-shoes/shoes6.jpg", category: "shoes_y", size:[36,37,38,39,40,41,42,43,44], color:["White","Jade Green"], inStock:15, description:"Yonex Power Cushion Strider Flow, lightweight for fast movements." },
+  { id: 406, name: "Yonex Shoes 7", price: 45, image: "./img-shoes/shoes7.jpg", category: "shoes_y", size:[36,37,38,39,40,41,42,43,44], color:["White","Jade Green"], inStock:15, description:"Yonex Power Cushion Strider Flow, responsive sole for agility." },
+  { id: 407, name: "Yonex Shoes 8", price: 45, image: "./img-shoes/shoes8.jpg", category: "shoes_y", size:[36,37,38,39,40,41,42,43,44], color:["White","Jade Green"], inStock:15, description:"Yonex Power Cushion Strider Flow, durable upper for long-term use." },
+  { id: 408, name: "Yonex Shoes 9", price: 45, image: "./img-shoes/shoes9.jpg", category: "shoes_y", size:[36,37,38,39,40,41,42,43,44], color:["White","Jade Green"], inStock:15, description:"Yonex Power Cushion Strider Flow, professional badminton performance." },
+  { id: 409, name: "Yonex Shoes 10", price: 33, image: "./img-shoes/shoes10.jpg", category: "shoes_y", size:[36,37,38,39,40,41,42,43,44], color:["White"], inStock:10, description:"Yonex lightweight indoor shoes, White/Jade Green." },
+  { id: 410, name: "Yonex Shoes 11", price: 33, image: "./img-shoes/shoes11.jpg", category: "shoes_y", size:[36,37,38,39,40,41,42,43,44], color:["Red","Black"], inStock:10, description:"Yonex Lava Red/Night Shadow, comfortable fit." },
+  { id: 411, name: "Yonex Shoes 12", price: 33, image: "./img-shoes/shoes12.jpg", category: "shoes_y", size:[36,37,38,39,40,41,42,43,44], color:["Yellow","Black"], inStock:10, description:"Yonex Honey Mustard/Night Shadow, breathable and light." },
+  { id: 412, name: "Yonex Shoes 13", price: 33, image: "./img-shoes/shoes13.jpg", category: "shoes_y", size:[36,37,38,39,40,41,42,43,44], color:["Blue","White","Aquarius"], inStock:10, description:"Yonex Dark Cobalt/White/Aquarious, fast and stable." },
+  { id: 413, name: "Yonex Shoes 14", price: 33, image: "./img-shoes/shoes14.jpg", category: "shoes_y", size:[36,37,38,39,40,41,42,43,44], color:["White","Green"], inStock:10, description:"Yonex Power Cushion Strider Flow, breathable mesh for comfort." },
+  { id: 414, name: "Yonex Shoes 15", price: 33, image: "./img-shoes/shoes15.jpg", category: "shoes_y", size:[36,37,38,39,40,41,42,43,44], color:["Off White","Leaf Green"], inStock:10, description:"Yonex Off White/Alphine Leaf, lightweight indoor shoe." },
+  { id: 415, name: "Yonex Shoes 16", price: 33, image: "./img-shoes/shoes16.jpg", category: "shoes_y", size:[36,37,38,39,40,41,42,43,44], color:["Gray","Lunar"], inStock:10, description:"Yonex Seal/Lunar Rock, durable and comfortable." },
+  { id: 416, name: "Yonex Shoes 17", price: 33, image: "./img-shoes/shoes17.jpg", category: "shoes_y", size:[36,37,38,39,40,41,42,43,44], color:["Sunset","Gray"], inStock:10, description:"Yonex Sunset/Gray, responsive and lightweight." },
+  { id: 417, name: "Yonex Shoes 18", price: 33, image: "./img-shoes/shoes18.jpg", category: "shoes_y", size:[36,37,38,39,40,41,42,43,44], color:["Blue","Green"], inStock:10, description:"Yonex Hyper Blue/Lime, breathable with high grip." },
+  { id: 418, name: "Yonex Shoes 19", price: 45, image: "./img-shoes/sy1.jpg", category: "shoes_y", size:[36,37,38,39,40,41,42,43,44], color:["White","Blue"], inStock:15, description:"Yonex Eclipsion Z, professional indoor shoe." },
+  { id: 419, name: "Yonex Shoes 20", price: 45, image: "./img-shoes/sy2.jpg", category: "shoes_y", size:[36,37,38,39,40,41,42,43,44], color:["White","Blue"], inStock:15, description:"Yonex 65z4, stable and lightweight." },
+  { id: 420, name: "Yonex Shoes 21", price: 45, image: "./img-shoes/sy3.jpg", category: "shoes_y", size:[36,37,38,39,40,41,42,43,44], color:["White","Blue"], inStock:15, description:"Yonex Aerus Z, comfortable and lightweight." },
+  { id: 421, name: "Yonex Shoes 22", price: 45, image: "./img-shoes/sy4.jpg", category: "shoes_y", size:[36,37,38,39,40,41,42,43,44], color:["White","Blue"], inStock:15, description:"Yonex Aerus Z, fast and breathable." },
+  { id: 422, name: "Yonex Shoes 23", price: 45, image: "./img-shoes/sy5.jpg", category: "shoes_y", size:[36,37,38,39,40,41,42,43,44], color:["White","Blue"], inStock:15, description:"Yonex 65z3, durable and lightweight." },
+  { id: 423, name: "Yonex Shoes 24", price: 45, image: "./img-shoes/sy6.jpg", category: "shoes_y", size:[36,37,38,39,40,41,42,43,44], color:["White","Blue"], inStock:15, description:"Yonex 65z3, fast and responsive." },
+  { id: 424, name: "Yonex Shoes 25", price: 45, image: "./img-shoes/sy7.jpg", category: "shoes_y", size:[36,37,38,39,40,41,42,43,44], color:["White","Blue"], inStock:15, description:"Yonex 65z3, stable and lightweight." },
+  { id: 425, name: "Yonex Shoes 26", price: 45, image: "./img-shoes/sy8.jpg", category: "shoes_y", size:[36,37,38,39,40,41,42,43,44], color:["White","Blue"], inStock:15, description:"Yonex Aerus Z, responsive and fast." },
+  { id: 426, name: "Yonex Shoes 27", price: 29, image: "./img-shoes/sy9.jpg", category: "shoes_y", size:[36,37,38,39,40,41,42,43,44], color:["White"], inStock:10, description:"Yonex Power Cushion Areus JR, lightweight junior shoe." },
+  { id: 427, name: "Yonex Shoes 28", price: 99, image: "./img-shoes/sy10.jpg", category: "shoes_y", size:[36,37,38,39,40,41,42,43,44], color:["White"], inStock:10, description:"Yonex Power Cushion Areus Z, professional performance." },
+  { id: 428, name: "Yonex Shoes 29", price: 119, image: "./img-shoes/sy11.jpg", category: "shoes_y", size:[36,37,38,39,40,41,42,43,44], color:["White"], inStock:10, description:"Yonex Power Cushion 88Dial, premium indoor shoe." },
+  { id: 429, name: "Yonex Shoes 30", price: 119, image: "./img-shoes/sy12.jpg", category: "shoes_y", size:[36,37,38,39,40,41,42,43,44], color:["White"], inStock:10, description:"Yonex Power Cushion 88Dial, superior cushioning and grip." },
+  { id: 430, name: "Yonex Shoes 31", price: 109, image: "./img-shoes/sy13.jpg", category: "shoes_y", size:[36,37,38,39,40,41,42,43,44], color:["White"], inStock:10, description:"Yonex Aerus Z, lightweight and fast." },
+  { id: 431, name: "Yonex Shoes 32", price: 109, image: "./img-shoes/sy14.jpg", category: "shoes_y", size:[36,37,38,39,40,41,42,43,44], color:["White"], inStock:10, description:"Yonex Aerus Z, breathable mesh upper." },
+  { id: 432, name: "Yonex Shoes 33", price: 109, image: "./img-shoes/sy15.jpg", category: "shoes_y", size:[36,37,38,39,40,41,42,43,44], color:["White"], inStock:10, description:"Yonex Aerus Z, fast response and cushioning." },
+  { id: 433, name: "Yonex Shoes 34", price: 109, image: "./img-shoes/sy16.jpg", category: "shoes_y", size:[36,37,38,39,40,41,42,43,44], color:["White"], inStock:10, description:"Yonex Comfort Z Wide Mid, extra support for wide feet." },
+
+  // ================= Victor Shoes =================
+  { id: 434, name: "Victor Shoes 1", price: 99, image: "./img-shoes/sv3.jpg", category: "shoes_v", size:[36,37,38,39,40,41,42,43,44], color:["Blue","White"], inStock:10, description:"Victor A970 Nitrolite, lightweight and durable." },
+  { id: 435, name: "Victor Shoes 2", price: 99, image: "./img-shoes/sv4.jpg", category: "shoes_v", size:[36,37,38,39,40,41,42,43,44], color:["Black","Red"], inStock:10, description:"Victor S820111 Nitrolite, comfortable for long matches." },
+  { id: 436, name: "Victor Shoes 3", price: 99, image: "./img-shoes/sv5.jpg", category: "shoes_v", size:[36,37,38,39,40,41,42,43,44], color:["White","Red"], inStock:10, description:"Victor P9200 TTY NLITE, ideal for indoor sports." },
+  { id: 437, name: "Victor Shoes 4", price: 99, image: "./img-shoes/sv6.jpg", category: "shoes_v", size:[36,37,38,39,40,41,42,43,44], color:["White","Red"], inStock:10, description:"Victor S820 II, responsive and stable." },
+  { id: 438, name: "Victor Shoes 5", price: 99, image: "./img-shoes/sv7.jpg", category: "shoes_v", size:[36,37,38,39,40,41,42,43,44], color:["Black","Red"], inStock:10, description:"Victor A920, lightweight and durable." },
+
+  // ================= Victor Shoes =================
+{ id: 439, name: "Victor Shoes 6", price: 99, image: "./img-shoes/sv8.jpg", category: "shoes_v", size:[36,37,38,39,40,41,42,43,44], color:["White","Blue"], inStock:10, description:"Victor A960, lightweight with excellent grip." },
+{ id: 440, name: "Victor Shoes 7", price: 99, image: "./img-shoes/sv9.jpg", category: "shoes_v", size:[36,37,38,39,40,41,42,43,44], color:["Black","Red"], inStock:10, description:"Victor S820II, durable with responsive cushioning." },
+{ id: 441, name: "Victor Shoes 8", price: 99, image: "./img-shoes/sv10.jpg", category: "shoes_v", size:[36,37,38,39,40,41,42,43,44], color:["White","Red"], inStock:10, description:"Victor A950, professional indoor shoe, breathable upper." },
+{ id: 442, name: "Victor Shoes 9", price: 99, image: "./img-shoes/sv11.jpg", category: "shoes_v", size:[36,37,38,39,40,41,42,43,44], color:["White","Black"], inStock:10, description:"Victor SH-A950, comfortable and lightweight for fast moves." },
+{ id: 443, name: "Victor Shoes 10", price: 99, image: "./img-shoes/sv12.jpg", category: "shoes_v", size:[36,37,38,39,40,41,42,43,44], color:["Blue","White"], inStock:10, description:"Victor SH-A960, stable and cushioned midsole." },
+{ id: 444, name: "Victor Shoes 11", price: 99, image: "./img-shoes/sv13.jpg", category: "shoes_v", size:[36,37,38,39,40,41,42,43,44], color:["Black","Red"], inStock:10, description:"Victor SH-A950, lightweight with anti-slip sole." },
+{ id: 445, name: "Victor Shoes 12", price: 99, image: "./img-shoes/sv15.jpg", category: "shoes_v", size:[36,37,38,39,40,41,42,43,44], color:["White","Blue"], inStock:10, description:"Victor SH-A920, responsive and fast." },
+{ id: 446, name: "Victor Shoes 13", price: 99, image: "./img-shoes/sv16.jpg", category: "shoes_v", size:[36,37,38,39,40,41,42,43,44], color:["Black","White"], inStock:10, description:"Victor SH-A930, breathable and stable indoor shoe." },
+{ id: 447, name: "Victor Shoes 14", price: 99, image: "./img-shoes/sv17.jpg", category: "shoes_v", size:[36,37,38,39,40,41,42,43,44], color:["White","Red"], inStock:10, description:"Victor SH-A940, lightweight for quick movements." },
+{ id: 448, name: "Victor Shoes 15", price: 99, image: "./img-shoes/sv18.jpg", category: "shoes_v", size:[36,37,38,39,40,41,42,43,44], color:["Black","Red"], inStock:10, description:"Victor SH-A950, professional performance." },
+{ id: 449, name: "Victor Shoes 16", price: 99, image: "./img-shoes/sv19.jpg", category: "shoes_v", size:[36,37,38,39,40,41,42,43,44], color:["White","Blue"], inStock:10, description:"Victor SH-A960, stable and cushioned midsole." },
+{ id: 450, name: "Victor Shoes 17", price: 49, image: "./img-shoes/sv20.jpg", category: "shoes_v", size:[36,37,38,39,40,41,42,43,44], color:["White"], inStock:8, description:"Victor junior indoor shoes, lightweight and flexible." },
+{ id: 451, name: "Victor Shoes 18", price: 70, image: "./img-shoes/sv21.jpg", category: "shoes_v", size:[36,37,38,39,40,41,42,43,44], color:["Blue","White"], inStock:10, description:"Victor A950 Lite, comfortable for long sessions." },
+{ id: 452, name: "Victor Shoes 19", price: 69, image: "./img-shoes/sv22.jpg", category: "shoes_v", size:[36,37,38,39,40,41,42,43,44], color:["Black","Red"], inStock:10, description:"Victor SH-A920, stable and responsive." },
+{ id: 453, name: "Victor Shoes 20", price: 65, image: "./img-shoes/sv23.jpg", category: "shoes_v", size:[36,37,38,39,40,41,42,43,44], color:["White","Blue"], inStock:10, description:"Victor SH-A930, lightweight and breathable." },
+{ id: 454, name: "Victor Shoes 21", price: 69, image: "./img-shoes/sv24.jpg", category: "shoes_v", size:[36,37,38,39,40,41,42,43,44], color:["Black","Red"], inStock:10, description:"Victor SH-A940, responsive sole for fast movement." },
+{ id: 455, name: "Victor Shoes 22", price: 65, image: "./img-shoes/sv25.jpg", category: "shoes_v", size:[36,37,38,39,40,41,42,43,44], color:["White","Blue"], inStock:10, description:"Victor SH-A950, durable and lightweight." },
+{ id: 456, name: "Victor Shoes 23", price: 119, image: "./img-shoes/sv26.jpg", category: "shoes_v", size:[36,37,38,39,40,41,42,43,44], color:["Black","Red"], inStock:10, description:"Victor SH-A960, professional-grade indoor shoes." },
+{ id: 457, name: "Victor Shoes 24", price: 56, image: "./img-shoes/sv27.jpg", category: "shoes_v", size:[36,37,38,39,40,41,42,43,44], color:["White","Blue"], inStock:10, description:"Victor lightweight training shoes, comfortable fit." },
+{ id: 458, name: "Victor Shoes 25", price: 50, image: "./img-shoes/sv28.jpg", category: "shoes_v", size:[36,37,38,39,40,41,42,43,44], color:["White"], inStock:10, description:"Victor junior indoor shoes, flexible sole." },
+{ id: 459, name: "Victor Shoes 26", price: 50, image: "./img-shoes/sv29.jpg", category: "shoes_v", size:[36,37,38,39,40,41,42,43,44], color:["Blue"], inStock:10, description:"Victor junior training shoes, lightweight and comfortable." },
+{ id: 460, name: "Victor Shoes 27", price: 99, image: "./img-shoes/sv30.jpg", category: "shoes_v", size:[36,37,38,39,40,41,42,43,44], color:["Black","Red"], inStock:10, description:"Victor SH-A970, fast response and durable." },
+{ id: 461, name: "Victor Shoes 28", price: 50, image: "./img-shoes/sv1.jpg", category: "shoes_v", size:[36,37,38,39,40,41,42,43,44], color:["White"], inStock:10, description:"Victor junior indoor shoes, lightweight." },
+{ id: 462, name: "Victor Shoes 29", price: 50, image: "./img-shoes/sv2.jpg", category: "shoes_v", size:[36,37,38,39,40,41,42,43,44], color:["Black"], inStock:10, description:"Victor junior indoor shoes, flexible and breathable." },
+// ================= Victor Shoes =================
+{ id: 480, name: "Victor P9200CPH Shoes", price: 50, image: "./img-shoes/svv1.jpg", category: "shoes_v", color: ["Navi Blue"], size: ["39", "40", "41", "42", "43", "44"], description: "Victor P9200CPH badminton shoes offering excellent cushioning, stability, and on-court performance." },
+{ id: 481, name: "Victor A550 Shoes", price: 50, image: "./img-shoes/svv2.jpg", category: "shoes_v", color: ["white"], size: ["39", "40", "41", "42", "43", "44"], description: "Lightweight Victor A550 shoes designed for comfort, grip, and durability during matches." },
+{ id: 482, name: "Victor A770 Shoes", price: 50, image: "./img-shoes/svv3.jpg", category: "shoes_v", color: ["white"], size: ["39", "40", "41", "42", "43", "44"], description: "Victor A770 badminton shoes with breathable materials and stable sole support for fast movement." },
+{ id: 483, name: "Victor P9200CPH Shoes", price: 50, image: "./img-shoes/svv4.jpg", category: "shoes_v", color: ["white"], size: ["39", "40", "41", "42", "43", "44"], description: "High-performance Victor P9200CPH shoes designed for shock absorption and strong foot protection." },
+{ id: 484, name: "Victor P9200CPH Shoes", price: 50, image: "./img-shoes/svv5.jpg", category: "shoes_v", color: ["white/Blue"], size: ["39", "40", "41", "42", "43", "44"], description: "Durable Victor P9200CPH badminton shoes providing superior grip and comfort for intense play." },
+{ id: 485, name: "Victor A970 Nitrolite Shoes", price: 50, image: "./img-shoes/svv6.jpg", category: "shoes_v", color: ["white/Green"], size: ["39", "40", "41", "42", "43", "44"], description: "Victor A970 Nitrolite shoes featuring responsive cushioning and lightweight construction for agility." },
+{ id: 486, name: "Victor A970 Nitrolite Shoes", price: 50, image: "./img-shoes/svv7.jpg", category: "shoes_v", color: ["White"], size: ["39", "40", "41", "42", "43", "44"], description: "Advanced Victor A970 Nitrolite badminton shoes built for speed, balance, and long-lasting comfort." },
+{ id: 487, name: "Victor A970 Nitrolite Shoes", price: 50, image: "./img-shoes/svv8.jpg", category: "shoes_v", color: ["Black/Purple"], size: ["39", "40", "41", "42", "43", "44"], description: "Professional-grade Victor A970 Nitrolite shoes offering excellent energy return and stability." },
+{ id: 488, name: "Victor AS-17W Shoes", price: 50, image: "./img-shoes/svv9.jpg", category: "shoes_v", color: ["Navi Blue/Gold"], size: ["39", "40", "41", "42", "43", "44"], description: "Victor AS-17W badminton shoes designed for comfort, grip, and daily training sessions." },
+{ id: 489, name: "Victor AS-17W Shoes", price: 50, image: "./img-shoes/svv10.jpg", category: "shoes_v", color: ["white/Black"], size: ["39", "40", "41", "42", "43", "44"], description: "Reliable Victor AS-17W shoes offering stable foot support and non-slip sole design." },
+{ id: 490, name: "Victor AS-17W Shoes", price: 50, image: "./img-shoes/svv11.jpg", category: "shoes_v", color: ["white/Blue"], size: ["39", "40", "41", "42", "43", "44"], description: "Comfort-focused Victor AS-17W badminton shoes suitable for long training and match play." },
+{ id: 491, name: "Victor AS-17W Shoes", price: 50, image: "./img-shoes/svv12.jpg", category: "shoes_v", color: ["Black/Green"], size: ["39", "40", "41", "42", "43", "44"], description: "Victor AS-17W shoes delivering durability, traction, and all-around performance on court." },
+
+// ================= Mizuno Shoes =================
+{ id: 463, name: "Mizuno Shoes 1", price: 115, image: "./img-shoes/sm1.jpg", category: "shoes_m", size:[36,37,38,39,40,41,42,43,44], color:["White","Blue"], inStock:10, description:"Mizuno Wave Lightning Z6, professional badminton shoe." },
+{ id: 464, name: "Mizuno Shoes 2", price: 40, image: "./img-shoes/sm2.jpg", category: "shoes_m", size:[36,37,38,39,40,41,42,43,44], color:["Red","Black"], inStock:15, description:"Mizuno Thunder Blade, lightweight indoor shoe for beginners." },
+{ id: 465, name: "Mizuno Shoes 3", price: 89, image: "./img-shoes/sm3.jpg", category: "shoes_m", size:[36,37,38,39,40,41,42,43,44], color:["White","Gray"], inStock:10, description:"Mizuno Wave Fang RX3, comfortable and durable." },
+{ id: 466, name: "Mizuno Shoes 4", price: 89, image: "./img-shoes/sm4.jpg", category: "shoes_m", size:[36,37,38,39,40,41,42,43,44], color:["Blue","Black"], inStock:10, description:"Mizuno Wave Fang RX2, lightweight and supportive." },
+{ id: 467, name: "Mizuno Shoes 5", price: 89, image: "./img-shoes/sm5.jpg", category: "shoes_m", size:[36,37,38,39,40,41,42,43,44], color:["White","Red"], inStock:10, description:"Mizuno Wave Fang, professional indoor shoe." },
+{ id: 468, name: "Mizuno Shoes 6", price: 100, image: "./img-shoes/sm6.jpg", category: "shoes_m", size:[36,37,38,39,40,41,42,43,44], color:["Black","Blue"], inStock:10, description:"Mizuno Wave Fang, responsive and fast." },
+{ id: 469, name: "Mizuno Shoes 7", price: 119, image: "./img-shoes/sm7.jpg", category: "shoes_m", size:[36,37,38,39,40,41,42,43,44], color:["White","Blue"], inStock:10, description:"Mizuno Wave Fang Z, professional badminton performance." },
+{ id: 470, name: "Mizuno Shoes 8", price: 110, image: "./img-shoes/sm8.jpg", category: "shoes_m", size:[36,37,38,39,40,41,42,43,44], color:["Red","Black"], inStock:10, description:"Mizuno Wave Fang RX, fast and breathable." },
+{ id: 471, name: "Mizuno Shoes 9", price: 135, image: "./img-shoes/sm9.jpg", category: "shoes_m", size:[36,37,38,39,40,41,42,43,44], color:["White","Gray"], inStock:10, description:"Mizuno Wave Lightning Z7, elite indoor performance." },
+{ id: 472, name: "Mizuno Shoes 10", price: 115, image: "./img-shoes/sm10.jpg", category: "shoes_m", size:[36,37,38,39,40,41,42,43,44], color:["Black","Blue"], inStock:10, description:"Mizuno Wave Lightning Z6, stable and lightweight." },
+// ================= Mizuno Shoes =================
+{ id: 473, name: "Mizuno Shoes 11", price: 50, image: "./img-shoes/smm1.jpg", category: "shoes_m", color: ["Mixed"], size: ["36", "37", "38", "39", "40", "41", "42"], description: "Mizuno badminton shoes designed for comfort, stability, and reliable grip during matches." },
+{ id: 474, name: "Mizuno Shoes 12", price: 50, image: "./img-shoes/smm2.jpg", category: "shoes_m", color: ["Mixed"], size: ["36", "37", "38", "39", "40", "41", "42"], description: "Lightweight Mizuno shoes offering responsive cushioning and support for fast footwork." },
+{ id: 475, name: "Mizuno Shoes 13", price: 50, image: "./img-shoes/smm3.jpg", category: "shoes_m", color: ["Mixed"], size: ["36", "37", "38", "39", "40", "41", "42"], description: "Breathable Mizuno badminton shoes built for agility, comfort, and durability on court." },
+{ id: 476, name: "Mizuno Shoes 14", price: 50, image: "./img-shoes/smm4.jpg", category: "shoes_m", color: ["Mixed"], size: ["36", "37", "38", "39", "40", "41", "42"], description: "Mizuno performance shoes providing excellent traction and foot stability for intense play." },
+{ id: 477, name: "Mizuno Shoes 15", price: 50, image: "./img-shoes/smm5.jpg", category: "shoes_m", color: ["Mixed"], size: ["36", "37", "38", "39", "40", "41", "42"], description: "Durable Mizuno shoes designed to support quick movements and long training sessions." },
+{ id: 478, name: "Mizuno Shoes 16", price: 50, image: "./img-shoes/smm6.jpg", category: "shoes_m", color: ["Mixed"], size: ["36", "37", "38", "39", "40", "41", "42"], description: "Mizuno badminton shoes combining comfort, shock absorption, and solid court grip." },
+{ id: 479, name: "Mizuno Shoes 17", price: 50, image: "./img-shoes/smm7.jpg", category: "shoes_m", color: ["Mixed"], size: ["36", "37", "38", "39", "40", "41", "42"], description: "High-quality Mizuno shoes built for balance, flexibility, and everyday performance." },
+{ id: 492, name: "Mizuno Shoes", price: 50, image: "./img-shoes/smm8.jpg", category: "shoes_m", color: ["Mixed"], size: ["36", "37", "38", "39", "40", "41", "42"], description: "Classic Mizuno badminton shoes suitable for both training and competitive matches." },
+{ id: 493, name: "Mizuno Shoes", price: 50, image: "./img-shoes/smm9.jpg", category: "shoes_m", color: ["Mixed"], size: ["36", "37", "38", "39", "40", "41", "42"], description: "Comfort-oriented Mizuno shoes offering reliable support and non-slip sole design." },
+{ id: 494, name: "Mizuno Shoes", price: 50, image: "./img-shoes/smm10.jpg", category: "shoes_m", color: ["Mixed"], size: ["36", "37", "38", "39", "40", "41", "42"], description: "Mizuno performance shoes designed to deliver durability, grip, and comfort on court." },
+
+  { id: 500, name: "Yonex White Sock", price: 3.5, image: "./img-socks/yonex1.jpg", category: "sock_y",size: ["Free Size"], colors: ["White"],  inStock:10, description: "Comfortable Yonex badminton socks made with breathable fabric for daily training and matches." },
+  { id: 501, name: "Yonex Black Sock", price: 3.5, image: "./img-socks/yonex2.jpg", category: "sock_y", color: ["Black"], size: ["Free Size"], inStock:10, description: "Durable Yonex socks designed to reduce sweat and provide ankle support during play." },
+  { id: 502, name: "Yonex Red Sock", price: 3.5, image: "./img-socks/yonex3.jpg", category: "sock_y", color: ["Red"], size: ["Free Size"], inStock:10, description: "Stylish Yonex badminton socks with soft cushioning for long matches." },
+  { id: 503, name: "Yonex Blue Sock", price: 3.5, image: "./img-socks/yonex4.jpg", category: "sock_y", color: ["Blue"], size: ["Free Size"], inStock:10, description: "Lightweight Yonex socks offering comfort, flexibility, and moisture control." },
+  { id: 504, name: "Yonex Green Sock", price: 3.5, image: "./img-socks/yonex5.jpg", category: "sock_y", color: ["Green"], size: ["Free Size"], inStock:10, description: "High-quality Yonex socks suitable for both training and competition." },
+  { id: 505, name: "Yonex Purple Sock", price: 3.5, image: "./img-socks/yonex6.jpg", category: "sock_y", color: ["Purple"], size: ["Free Size"], inStock :10 , description:"Premium Yonex socks with elastic fit and long-lasting comfort." },
+  { id: 510, name: "Victor White Sock", price: 3.5, image: "./img-socks/victor1.jpg", category: "sock_v", color: ["White"], size: ["Free Size"], inStock:10, description: "Victor badminton socks made for maximum comfort and sweat absorption." },
+  { id: 511, name: "Victor Black Sock", price: 3.5, image: "./img-socks/victor2.jpg", category: "sock_v", color: ["Black"], size: ["Free Size"], inStock:10, description: "Strong and flexible Victor socks designed for intense badminton movement." },
+  { id: 512, name: "Victor Red Sock", price: 3.5, image: "./img-socks/victor3.jpg", category: "sock_v", color :["Red"], size :["Free Size"], inStock :10 , description:"Bright red Victor socks with soft cushioning for active players." },
+  { id: 513, name: "Victor Blue Sock", price: 3.5, image: "./img-socks/victor4.jpg", category: "sock_v", color: ["Blue"], size: ["Free Size"], inStock :10 , description:"Lightweight Victor socks offering breathability and comfort for daily training." },
+   // ================= Small Bags =================
+  { id: 600, name: "Bagpack Small 1", price: 20, image: "./img-bag/bag1.jpg", category: "bag_small", color: ["Black"], size: ["Medium"], description: "Compact and lightweight bagpack, perfect for daily use or training." },
+  { id: 601, name: "Bagpack Small 2", price: 20, image: "./img-bag/bag2.jpg", category: "bag_small", color: ["Blue"], size: ["Medium"], description: "Durable bagpack with padded straps for comfort during travel or sports." },
+  { id: 602, name: "Bagpack Small 3", price: 20, image: "./img-bag/bag3.jpg", category: "bag_small", color: ["Red"], size: ["Medium"], description: "Stylish small bagpack with multiple compartments for easy organization." },
+  { id: 603, name: "Bagpack Small 4", price: 20, image: "./img-bag/bag4.jpg", category: "bag_small", color: ["Green"], size: ["Medium"], description: "Practical bagpack designed for sports, school, or casual use." },
+
+  // ================= Big Bags =================
+  { id: 610, name: "Rectangle Bag 1", price: 29.99, image: "./img-bag/bigbag1.jpg", category: "bag_big", color: ["Black"], size: ["Large"], description: "Spacious rectangle bag with sturdy zippers, ideal for training and travel." },
+  { id: 611, name: "Rectangle Bag 2", price: 29.99, image: "./img-bag/bigbag2.jpg", category: "bag_big", color: ["Blue"], size: ["Large"], description: "High-quality big bag with multiple compartments and reinforced handles." },
+  { id: 612, name: "Rectangle Bag 3", price: 29.99, image: "./img-bag/bigbag3.jpg", category: "bag_big", color: ["Red"], size: ["Large"], description: "Durable rectangle bag perfect for sports gear or travel essentials." },
+  { id: 613, name: "Rectangle Bag 4", price: 29.99, image: "./img-bag/bigbag4.jpg", category: "bag_big", color: ["Green"], size: ["Large"], description: "Versatile big bag with strong straps and spacious main compartment." },
+  { id: 614, name: "Rectangle Bag 5", price: 29.99, image: "./img-bag/bigbag5.jpg", category: "bag_big", color: ["Gray"], size: ["Large"], description: "Stylish and practical rectangle bag for sports and casual outings." },
+  { id: 615, name: "Rectangle Bag 6", price: 29.99, image: "./img-bag/bigbag6.jpg", category: "bag_big", color: ["Navy"], size: ["Large"], description: "Large rectangle bag with reinforced handles for carrying heavy items." },
+  { id: 616, name: "Rectangle Bag 7", price: 29.99, image: "./img-bag/bigbag7.jpg", category: "bag_big", color: ["Black/White"], size: ["Large"], description: "Durable rectangle bag with stylish design, suitable for sports or travel." },
+  { id: 617, name: "Rectangle Bag 8", price: 29.99, image: "./img-bag/bigbag8.jpg", category: "bag_big", color :["Red/Blue"], size :["Large"], description:"Functional big bag with multiple pockets and comfortable straps." },
+  { id: 618, name: "Rectangle Bag 9", price: 29.99, image: "./img-bag/bigbag9.jpg", category: "bag_big", color: ["Black/Gray"], size: ["Large"], description: "Reliable rectangle bag for gym, school, or daily commuting." },
+  { id: 619, name: "Rectangle Bag 10", price: 29.99, image: "./img-bag/bigbag10.jpg", category: "bag_big", color: ["Blue/White"], size: ["Large"], description: "Spacious bag with reinforced stitching, ideal for sports gear." },
+  { id: 620, name: "Rectangle Bag 11", price: 29.99, image: "./img-bag/bigbag11.jpg", category: "bag_big", color: ["Green/Black"], size: ["Large"], description: "Sturdy big bag with stylish design and durable zippers." },
+  { id: 621, name: "Rectangle Bag 12", price: 29.99, image: "./img-bag/bigbag12.jpg", category: "bag_big", color :["Red/Black"], size :["Large"], description:"Multipurpose rectangle bag suitable for sports, school, or travel." },
+  { id: 622, name: "Rectangle Bag 13", price: 29.99, image: "./img-bag/bigbag13.jpg", category: "bag_big", color :["Blue/Gray"], size :["Large"], description:"Large, durable bag designed for convenience and comfort." },
+  { id: 623, name: "Rectangle Bag 14", price: 29.99, image: "./img-bag/bigbag14.jpg", category: "bag_big", color: ["Black/Red"], size: ["Large"], description: "Stylish rectangle bag with spacious compartments for all essentials." },
+  { id: 624, name: "Rectangle Bag 15", price: 29.99, image: "./img-bag/bigbag15.jpg", category: "bag_big", color: ["Gray/Blue"], size: ["Large"], description: "Functional and durable bag ideal for sports and travel purposes." },
+
+  { id: 700, name: "Yonex White Sock", price: 3.5, image: "./img-socks/yonex1.jpg", category: "acc", color: ["White"], size: ["Free Size"], description: "Comfortable Yonex socks made from breathable fabric for training and matches." },
+{ id: 701, name: "Victor Shuttles", price: 16.99, image: "./img-other/victor_shuttle1.jpg", category: "acc", color: ["White"], size: ["77 Speed"], description: "High-quality Victor badminton shuttles suitable for practice and competitive play." },
+{ id: 702, name: "Victor Shuttles", price: 16.99, image: "./img-other/victor_shuttle2.jpg", category: "acc", color: ["White"], size: ["78 Speed"], description: "Durable feather shuttles designed for stable flight and long-lasting performance." },
+{ id: 703, name: "Lucksis Shuttles Blue", price: 16.99, image: "./img-other/lucksis_shuttle_blue.jpg", category: "acc", color: ["White/Blue"], size: ["77 Speed"], description: "Consistent flight badminton shuttles suitable for both training and casual games." },
+{ id: 704, name: "Lucksis Shuttles Red", price: 16.99, image: "./img-other/lucksis_shuttles_red.jpg", category: "acc", color: ["White/Red"], size: ["78 Speed"], description: "Premium quality shuttles designed for better control and durability during matches." },
+{ id: 705, name: "Victor Grip Anti Slip", price: 6.5, image: "./img-other/grid.jpg", category: "acc", color: ["Black"], size: ["Standard"], description: "Anti-slip badminton grip that improves racket control and playing comfort." },
+{ id: 706, name: "Victor Badminton Grip", price: 2.5, image: "./img-other/grip2.jpg", category: "acc", color: ["Mixed"], size: ["Standard"], description: "Soft and durable grip designed to absorb sweat and reduce hand fatigue." },
+{ id: 707, name: "Yonex Super Grip Pure", price: 3.5, image: "./img-other/grip3.jpg", category: "acc", color: ["White"], size: ["Standard"], description: "Popular Yonex grip offering excellent tackiness and long-lasting performance." },
+{ id: 708, name: "Yonex Wristband", price: 4.99, image: "./img-other/Yonex_wrip.jpg", category: "acc", color: ["White"], size: ["Free Size"], description: "Yonex wristband designed to absorb sweat and enhance comfort during play." }
+
+];
+
+
+
+
+
+  // ===== Cart setup =====
+
+  // ===== PRODUCTS DATA =====
+
+  // ===== Get product ID from URL =====
+  const urlParams = new URLSearchParams(window.location.search);
+  const productId = parseInt(urlParams.get("id"));
+
+  const product = products.find(p => p.id === productId);
+  
+  const container = document.getElementById("productDetail");
+    
+  if (product) {
+    container.innerHTML = `
+      <div class="product-detail-card">
+        <img class="detail-img" src="${product.image}" alt="${product.name}">
+        <div class="detail-info">
+          <h2>${product.name}</h2>
+          <p>${product.description}</p>
+          <p>Price: $${product.price}</p>
+          <p>Available Sizes: ${product.size.join(", ")}</p>
+          <p>Available Colors: ${product.color.join(", ")}</p>
+          <p>In Stock: ${product.inStock}</p>
+
+          <button class="go-back" onclick="goBack()">← Go Back</button>
+          <button class="add-cart" data-id="${product.id}">Add to Cart</button>
+        </div>
+      </div>
+    `;
+  }
+
+  // ===== Add to Cart Functionality =====
+  document.addEventListener("click", (e) => {
+    if (e.target.classList.contains("add-cart") && product) {
+      const existing = cart.find(p => p.id === product.id);
+      if (existing) {
+        existing.quantity++;
+      } else {
+        cart.push({ ...product, quantity: 1 });
+      }
+
+      // Save cart to localStorage
+      localStorage.setItem("cart", JSON.stringify(cart));
+
+      alert("Added to cart!");
+    }
+  });
+
+  // ===== Go Back Function =====
+  function goBack() {
+    window.history.back();
+  }
+  </script>
+</body>
+</html>

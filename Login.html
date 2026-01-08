@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Login Form</title>
+    <link rel="stylesheet" href="./login.css">
+</head>
+
+<body>
+    <div class="container">
+        <img src="./img-tshirt/logo_reachsei.jpg" alt="Profile">
+        <h3>Welcome Back</h3>
+        <p>Please Login to your account</p>
+
+        <div class="input_group">
+            <label for="">Username</label>
+            <input type="text" id="loginUsername" placeholder="Enter the username">
+        </div>
+
+        <div class="input_group">
+            <label for="">Password</label>
+           <input type="password" id="loginPassword" placeholder="Enter the password">
+
+        </div>
+
+        <div class="forgot">
+            <a href="">Forgot password?</a>
+        </div>
+        <div class="btn-group">
+
+            <button class="btn">
+                <img src="https://img.icons8.com/?size=100&id=26223&format=png&color=000000" alt="">
+                Login</button>
+            <div class="register">
+                Don't have an account? <a href="./register.html">Register</a>
+            </div>
+        </div>
+        <script>
+            document.querySelector(".btn").onclick = () => {
+                const username = document.getElementById("loginUsername").value;
+                const password = document.getElementById("loginPassword").value;
+
+                const users = JSON.parse(localStorage.getItem("users")) || [];
+                const found = users.find(u => u.username === username && u.password === password);
+
+                if (found) {
+                    localStorage.setItem("currentUser", JSON.stringify(found));
+                    alert("Login successful");
+                    window.location.href = "index.html";
+                } else {
+                    alert("Invalid username or password");
+                }
+            };
+        </script>
+
+</body>
+
+</html>

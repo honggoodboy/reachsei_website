@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Reachsei Badminton</title>
+
+  <link rel="shortcut icon" href="https://img.icons8.com/?size=100&id=13010&format=png&color=000000">
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+
+  <!-- ================= NAVBAR ================= -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <div class="logo">
+        <img src="./img-tshirt/logo_reachsei.jpg">
+        <span>Reachsei</span>
+      </div>
+
+      <ul class="nav-menu">
+        <li><a href="./index.html">Home</a></li>
+        <li class="dropdown">
+          <a href="#">Product ▾</a>
+          <ul class="dropdown-menu">
+            <li><a href="./t-shirt.html">T-shirts</a></li>
+            <li><a href="./short.html">Shorts&Dresses</a></li>
+            <li><a href="./shoes.html">Shoes</a></li>
+            <li><a href="./rocket.html">Rocket</a></li>
+            <li><a href="./sock.html">Socks</a></li>
+            <li><a href="./bag.html">Bags</a></li>
+            <li><a href="./acc.html">Accessories</a></li>
+          </ul>
+        </li>
+        <li><a href="#">About Us</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <div class="cart">🛒 <span id="cartCount">0</span></div>
+        <input type="text" id="searchInput" class="small-search" placeholder="Search...">
+        
+        <a href="./Login.html" class="login-btn">Login</a>
+        <a href="#" id="logoutBtn" style="display:none">Logout</a>
+      </div>
+    </div>
+  </nav>
+      <!-- Hero Section -->
+    <section class="hero">
+      <img src="./img-logo/poster1.jpg" alt="Poster" class="hero-img" />
+      <div class="hero-overlay">
+        <h1>Elevate Your Game</h1>
+        <p>Shop Premium Badminton Gear</p>
+        <div class="hero-buttons">
+          <a href="./tshirt.html" class="btn-primary">Shop T-Shirts</a>
+          <a href="./short.html" class="btn-secondary">Shop Shorts & Dresses</a>
+        </div>
+        <div class="brand-logos">
+          <img src="./img-logo/yonex.png" alt="Yonex" />
+          <img src="./img-logo/li-ning.png" alt="Li-Ning" />
+          <img src="./img-logo/victor.jpg" alt="Victor" />
+          <img src="./img-logo/mizuno.jpg" alt="Mizuno" />
+        </div>
+      </div>
+    </section>
+    <marquee behavior="" direction="">
+      <p>
+        Let's go promotion Clearances Sale
+        <span class="discount">50% off</span> New Months
+      </p>
+    </marquee>
+
+  <!-- ================= PRODUCTS ================= -->
+  <main class="products-section">
+
+    <section id="new_products">
+      <h2 class="section-title">New Product</h2>
+      <div class="product-grid" data-category="new_product"></div>
+    </section>
+
+    <section id="tshirt">
+      <h2 class="section-title">T-Shirts</h2>
+      <div class="product-grid" data-category="tshirt"></div>
+    </section>
+
+    <section id="short">
+      <h2 class="section-title">Shorts & Dresses</h2>
+      <div class="product-grid" data-category="short"></div>
+    </section>
+
+    <section id="shoes">
+      <h2 class="section-title">Shoes</h2>
+      <div class="product-grid" data-category="shoes"></div>
+    </section>
+
+    <section id="rackets">
+      <h2 class="section-title">Racket</h2>
+      <div class="product-grid" data-category="rackets"></div>
+    </section>
+    <section id="socks">
+      <h2 class="section-title">Socks</h2>
+      <div class="product-grid" data-category="socks"></div>
+    </section>
+    <section id="bags">
+      <h2 class="section-title">Bags</h2>
+      <div class="product-grid" data-category="bags"></div>
+    </section>
+    <section id="accessories">
+      <h2 class="section-title">Accessories</h2>
+      <div class="product-grid" data-category="accessories"></div>
+  </main>
+  <footer>
+    <div class="footer-container">
+      <div class="footer-logo">
+        <img src="https://img.icons8.com/?size=100&id=NPW07SMh7Aco&format=png&color=000000" alt="Logo" />
+        <p>QueenM</p>
+      </div>
+      <div class="footer-columns">
+        <div class="footer-column">
+          <h4>Information</h4>
+          <div class="footer-contact">
+            <img src="https://img.icons8.com/?size=100&id=118497&format=png&color=000000" alt="Facebook" />
+            <a href="https://www.facebook.com/reachseibadminton/">Facebook</a>
+          </div>
+          <div class="footer-contact">
+            <img src="https://img.icons8.com/?size=100&id=fdfLpA6fsXN2&format=png&color=000000" alt="TikTok" />
+            <a href="https://www.tiktok.com/@reachseibadminton">TikTok</a>
+          </div>
+          <div class="footer-contact">
+            <img src="https://img.icons8.com/?size=100&id=MIMjVKoXINIT&format=png&color=000000" alt="Facebook" />
+            <a href="https://t.me/reachseibadminton">Telegram</a>
+          </div>
+        </div>
+        <div class="footer-column">
+          <h4>Help</h4>
+          <a href="#">Privacy</a>
+          <a href="#">Terms & Conditions</a>
+          <a href="#">Shipping</a>
+        </div>
+        <div class="footer-column">
+          <h4>Contact</h4>
+          <div class="footer-contact">
+            <img src="https://img.icons8.com/?size=100&id=3723&format=png&color=000000" alt="Location" />
+            <a
+              href="https://www.google.com/maps/place/Orkide+Badminton/@11.5669485,104.8395869,17z/data=!4m6!3m5!1s0x31094fd18896483b:0x7a551b8ca71a0e6!8m2!3d11.5669433!4d104.8421618!16s%2Fg%2F11y470g786?authuser=0&entry=ttu&g_ep=EgoyMDI1MTEyMy4xIKXMDSoASAFQAw%3D%3D">Orkide
+              Badminton, Phnom Penh</a>
+          </div>
+          <div class="footer-contact">
+            <img src="https://img.icons8.com/?size=100&id=12580&format=png&color=000000" alt="Email" />
+            <a href="https://t.me/queenboutiquekh">@queenboutiquekh</a>
+          </div>
+          <div class="footer-contact">
+            <img src="https://img.icons8.com/?size=100&id=9660&format=png&color=000000" alt="Phone" />
+            <a href="tel:+855966848484">+855966848484</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <!-- ================= CART MODAL ================= -->
+  <div id="cartModal" class="cart-modal">
+    <div class="cart-content">
+      <span id="closeCart" class="close">&times;</span>
+      <h2>Your Cart</h2>
+      <div id="cartItems"></div>
+      <div id="cartTotal"></div>
+    </div>
+  </div>
+
+  <!-- ================= SCRIPT ================= -->
+  <script>
+    /* ===== PRODUCTS DATA ===== */
+
+    const products = [
+      // ================= New_product =================
+      { id: 61, name: "Babu Limited Edition Shirt", price: 19.99, image: "./img-new_product/babushirt.jpg", category: "new_product" },
+      { id: 62, name: "Korea Shirt", price: 9.99, image: "./img-new_product/korea_shirt.jpg", category: "new_product" },
+      { id: 63, name: "Yonex Power Cushion Shoes", price: 65.99, image: "./img-new_product/shoe1.jpg", category: "new_product" },
+      { id: 64, name: "Yonex Power Cushion Shoes", price: 65.99, image: "./img-new_product/shoe2.jpg", category: "new_product" },
+      // ================= T-SHIRTS =================
+      { id: 1, name: "Yonex White Shirt", price: 5, image: "./img-tshirt/white_yonex_shirt.png", category: "tshirt" },
+      { id: 2, name: "Yonex Black Shirt", price: 5, image: "./img-tshirt/shirtblack-t31.png", category: "tshirt" },
+      { id: 3, name: "Yonex Pink Shirt", price: 5, image: "./img-tshirt/pinkshirt-t392.png", category: "tshirt" },
+      { id: 4, name: "Yonex Green Shirt", price: 5, image: "./img-tshirt/shirt-t33.png", category: "tshirt" },
+      { id: 5, name: "Yonex Shirt Y1", price: 5, image: "./img-tshirt/y1.jpg", category: "tshirt" },
+      { id: 6, name: "Yonex Shirt Y2", price: 5, image: "./img-tshirt/y2.jpg", category: "tshirt" },
+      { id: 7, name: "Yonex Shirt Y3", price: 5, image: "./img-tshirt/y3.jpg", category: "tshirt" },
+      { id: 8, name: "Yonex Shirt Y4", price: 5, image: "./img-tshirt/y4.jpg", category: "tshirt" },
+
+      // ================= SHORTS & DRESSES =================
+      { id: 9, name: "Yonex Pink Dress", price: 7, image: "./img-short/dress1.jpg", category: "short" },
+      { id: 10, name: "Yonex LightBlue Dress", price: 7, image: "./img-short/dress2.jpg", category: "short" },
+      { id: 11, name: "Yonex White Dress", price: 7, image: "./img-short/dress3.jpg", category: "short" },
+      { id: 12, name: "Yonex Black Dress", price: 7, image: "./img-short/dress4.jpg", category: "short" },
+      { id: 13, name: "Yonex MilkWhite Short", price: 7, image: "./img-short/short1.jpg", category: "short" },
+      { id: 14, name: "Yonex Blue Short", price: 7, image: "./img-short/short2.jpg", category: "short" },
+      { id: 15, name: "Yonex White Short", price: 7, image: "./img-short/short3.jpg", category: "short" },
+      { id: 16, name: "Yonex Black Short", price: 7, image: "./img-short/short4.jpg", category: "short" },
+
+      // ================= SHOES =================
+      { id: 17, name: "Yonex Black/White Shoes", price: 45, image: "./img-shoes/shoes1.jpg", category: "shoes" },
+      { id: 18, name: "Yonex White/Gold Shoes", price: 45, image: "./img-shoes/shoes2.jpg", category: "shoes" },
+      { id: 19, name: "Yonex Orange/White Shoes", price: 45, image: "./img-shoes/shoes3.jpg", category: "shoes" },
+      { id: 20, name: "Yonex White/Pink Shoes", price: 45, image: "./img-shoes/shoes4.jpg", category: "shoes" },
+      { id: 21, name: "Yonex Black/White Shoes", price: 45, image: "./img-shoes/shoes5.jpg", category: "shoes" },
+      { id: 22, name: "Yonex White/Black Shoes", price: 45, image: "./img-shoes/shoes6.jpg", category: "shoes" },
+      { id: 23, name: "Yonex Green/Black Shoes", price: 45, image: "./img-shoes/shoes7.jpg", category: "shoes" },
+      { id: 24, name: "Yonex White Shoes", price: 45, image: "./img-shoes/shoes8.jpg", category: "shoes" },
+
+      // ================= RACKETS =================
+      { id: 25, name: "Felet Pro Series Woven 8000", price: 135, image: "./img-rocket/felet1.jpg", category: "rackets" },
+      { id: 26, name: "Felet Pro Series Woven 1000", price: 125, image: "./img-rocket/felet2.jpg", category: "rackets" },
+      { id: 27, name: "Felet Pro Series TJ 1000", price: 125, image: "./img-rocket/felet3.jpg", category: "rackets" },
+      { id: 28, name: "Felet Pro Series Woven 1000+", price: 135, image: "./img-rocket/felet4.jpg", category: "rackets" },
+      { id: 29, name: "Li-Ning Axforce 90", price: 90, image: "./img-rocket/lining1.jpg", category: "rackets" },
+      { id: 30, name: "Li-Ning Axforce 50", price: 90, image: "./img-rocket/lining2.jpg", category: "rackets" },
+      { id: 31, name: "Li-Ning Axforce 40", price: 90, image: "./img-rocket/lining3.jpg", category: "rackets" },
+      { id: 32, name: "Li-Ning Axforce 100", price: 90, image: "./img-rocket/lining4.jpg", category: "rackets" },
+
+      // ================= SOCKS =================
+      { id: 33, name: "Victor Short Socks", price: 3.5, image: "./img-socks/victor1.jpg", category: "socks" },
+      { id: 34, name: "Victor Short Socks", price: 3.5, image: "./img-socks/victor2.jpg", category: "socks" },
+      { id: 35, name: "Victor Short Socks", price: 3.5, image: "./img-socks/victor3.jpg", category: "socks" },
+      { id: 36, name: "Victor Short Socks", price: 3.5, image: "./img-socks/victor4.jpg", category: "socks" },
+      { id: 37, name: "Yonex Long Socks", price: 3.5, image: "./img-socks/yonex1.jpg", category: "socks" },
+      { id: 38, name: "Yonex Long Socks", price: 3.5, image: "./img-socks/yonex2.jpg", category: "socks" },
+      { id: 39, name: "Yonex Long Socks", price: 3.5, image: "./img-socks/yonex3.jpg", category: "socks" },
+      { id: 40, name: "Yonex Long Socks", price: 3.5, image: "./img-socks/yonex4.jpg", category: "socks" },
+
+      // ================= BAGS =================
+      { id: 41, name: "Victor White Bag", price: 29.99, image: "./img-bag/bag1.jpg", category: "bags" },
+      { id: 42, name: "Victor White Bag", price: 29.99, image: "./img-bag/bag2.jpg", category: "bags" },
+      { id: 43, name: "Victor White Bag", price: 29.99, image: "./img-bag/bag3.jpg", category: "bags" },
+      { id: 44, name: "Victor Tournament Bag", price: 29.99, image: "./img-bag/bag4.jpg", category: "bags" },
+      { id: 45, name: "Victor Blue Tournament", price: 29.99, image: "./img-bag/bigbag1.jpg", category: "bags" },
+      { id: 46, name: "Victor Red Tournament", price: 29.99, image: "./img-bag/bigbag2.jpg", category: "bags" },
+      { id: 47, name: "Victor Purple Tournament", price: 29.99, image: "./img-bag/bigbag3.jpg", category: "bags" },
+      { id: 48, name: "Victor Orange Tournament", price: 29.99, image: "./img-bag/bigbag4.jpg", category: "bags" },
+
+      // ================= ACCESSORIES =================
+      { id: 49, name: "Victor Shuttles", price: 16.99, image: "./img-other/victor_shuttle1.jpg", category: "accessories" },
+      { id: 50, name: "Victor Shuttles", price: 16.99, image: "./img-other/victor_shuttle2.jpg", category: "accessories" },
+      { id: 51, name: "Lucksis Shuttles Blue", price: 16.99, image: "./img-other/lucksis_shuttle_blue.jpg", category: "accessories" },
+      { id: 52, name: "Lucksis Shuttles Red", price: 16.99, image: "./img-other/lucksis_shuttles_red.jpg", category: "accessories" },
+      { id: 53, name: "Victor Grip Anti Slip", price: 6.5, image: "./img-other/grid.jpg", category: "accessories" },
+      { id: 54, name: "Victor Badminton Grip", price: 2.5, image: "./img-other/grip2.jpg", category: "accessories" },
+      { id: 55, name: "Yonex Super Grip Pure", price: 3.5, image: "./img-other/grip3.jpg", category: "accessories" },
+      { id: 56, name: "Yonex Wristband", price: 4.99, image: "./img-other/Yonex_wrip.jpg", category: "accessories" }
+    ];
+
+
+  </script>
+  <script src="./script.js"></script>
+
+</body>
+
+</html>

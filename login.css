@@ -1,0 +1,146 @@
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Background */
+body {
+    background: linear-gradient(135deg, #e3e3e3, #ffffff);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Card Container */
+.container {
+    background: #fff896;
+    width: 380px;
+    padding: 30px;
+    border-radius: 16px;
+    text-align: center;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+/* Profile Icon */
+.container img {
+    width: 80px;
+    margin-bottom: 10px;
+    border-radius: 50%;
+}
+
+/* Title Text */
+.container h3 {
+    font-size: 26px;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #222;
+}
+
+.container p {
+    color: #777;
+    margin-bottom: 20px;
+}
+
+/* Input Group */
+.input_group {
+    text-align: left;
+    margin-bottom: 15px;
+}
+
+.input_group label {
+    font-size: 14px;
+    color: #444;
+    font-weight: 600;
+}
+
+.input_group input {
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    margin-top: 5px;
+    font-size: 15px;
+    transition: 0.3s;
+}
+
+.input_group input:focus {
+    border-color: #000;
+    outline: none;
+}
+
+/* Forgot Password */
+.forgot {
+    text-align: right;
+    margin-bottom: 20px;
+}
+
+.forgot a {
+    color: #000;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.forgot a:hover {
+    text-decoration: underline;
+}
+
+/* Button */
+.btn-group .btn {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    background: #000;
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    transition: 0.3s;
+}
+
+.btn-group .btn img {
+    width: 20px;
+}
+
+.btn-group .btn:hover {
+    background: #333;
+    transform: scale(1.02);
+}
+
+/* Register link */
+.register {
+    margin-top: 15px;
+    font-size: 14px;
+    color: #555;
+}
+
+.register a {
+    color: #000;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.register a:hover {
+    text-decoration: underline;
+}
+
+/* Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

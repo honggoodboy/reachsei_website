@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product Detail</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <!-- Navbar (optional: reuse your existing navbar here) -->
+  <nav class="navbar">
+    <!-- your navbar HTML -->
+  </nav>
+
+  <!-- Product Detail Section -->
+  <main class="product-detail-section">
+    <div id="productDetail"></div>
+  </main>
+
+  <footer>
+    <!-- your footer HTML -->
+  </footer>
+
+  <script>
+     let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    // ===== PRODUCTS DATA (same as in main page, or import it from a separate file) =====
+    const products = [
+  // ================= Yonex =================
+  { id: 100, name: "Yonex White Shirt", price: 5, image: "./img-tshirt/white_yonex_shirt.png", category: "tshirt", size: ["S","M","L"], color:["White"], inStock: 30, description:"Classic Yonex white shirt, soft and breathable." },
+  { id: 101, name: "Yonex Black Shirt", price: 5, image: "./img-tshirt/shirtblack-t31.png", category: "tshirt", size: ["S","M","L"], color:["Black"], inStock: 25, description:"Comfortable black shirt for training and competition." },
+  { id: 102, name: "Yonex Pink Shirt", price: 5, image: "./img-tshirt/pinkshirt-t392.png", category: "tshirt", size: ["S","M","L"], color:["Pink"], inStock: 20, description:"Yonex pink shirt, perfect for female players." },
+  { id: 103, name: "Yonex Green Shirt", price: 5, image: "./img-tshirt/shirt-t33.png", category: "tshirt", size: ["S","M","L"], color:["Green"], inStock: 15, description:"Green Yonex shirt with lightweight material." },
+  { id: 104, name: "Yonex Shirt Y1", price: 5, image: "./img-tshirt/y1.jpg", category: "tshirt", size: ["S","M","L"], color:["Blue"], inStock: 10, description:"Yonex Y1 shirt, durable and comfortable." },
+  { id: 105, name: "Yonex Shirt Y2", price: 5, image: "./img-tshirt/y2.jpg", category: "tshirt", size: ["S","M","L"], color:["Yellow"], inStock: 12, description:"Yonex Y2 shirt with moisture-wicking fabric." },
+  { id: 106, name: "Yonex Shirt Y3", price: 5, image: "./img-tshirt/y3.jpg", category: "tshirt", size: ["S","M","L"], color:["Red"], inStock: 8, description:"Yonex Y3 shirt, lightweight and breathable." },
+  { id: 107, name: "Yonex Shirt Y4", price: 5, image: "./img-tshirt/y4.jpg", category: "tshirt", size: ["S","M","L"], color:["Black"], inStock: 7, description:"Yonex Y4 shirt, classic design." },
+  { id: 108, name: "Yonex Shirt Y5", price: 5, image: "./img-tshirt/y5.jpg", category: "tshirt", size: ["S","M","L"], color:["White"], inStock: 10, description:"Yonex Y5 shirt, soft and breathable." },
+  { id: 109, name: "Yonex Shirt Y6", price: 5, image: "./img-tshirt/y6.jpg", category: "tshirt", size: ["S","M","L"], color:["Blue"], inStock: 12, description:"Yonex Y6 shirt with classic style." },
+  { id: 110, name: "Yonex Shirt Y7", price: 5, image: "./img-tshirt/y7.jpg", category: "tshirt", size: ["S","M","L"], color:["Red"], inStock: 8, description:"Yonex Y7 shirt, comfortable for training." },
+  { id: 111, name: "Yonex Shirt Y8", price: 5, image: "./img-tshirt/y8.jpg", category: "tshirt", size: ["S","M","L"], color:["Black"], inStock: 7, description:"Yonex Y8 shirt, classic design." },
+  { id: 112, name: "Yonex Shirt Y9", price: 5, image: "./img-tshirt/y9.jpg", category: "tshirt", size: ["S","M","L"], color:["White"], inStock: 10, description:"Yonex Y9 shirt, breathable fabric." },
+  { id: 113, name: "Yonex Shirt Y10", price: 5, image: "./img-tshirt/y10.jpg", category: "tshirt", size: ["S","M","L"], color:["Blue"], inStock: 12, description:"Yonex Y10 shirt, lightweight and comfortable." },
+  { id: 114, name: "Yonex Shirt Y11", price: 5, image: "./img-tshirt/y11.jpg", category: "tshirt", size: ["S","M","L"], color:["Red"], inStock: 8, description:"Yonex Y11 shirt, perfect for indoor training." },
+  { id: 115, name: "Yonex Shirt Y12", price: 5, image: "./img-tshirt/y12.jpg", category: "tshirt", size: ["S","M","L"], color:["Black"], inStock: 7, description:"Yonex Y12 shirt, classic style." },
+
+  // ================= Li-Ning =================
+  { id: 116, name: "Li-Ning Shirt L1", price: 10, image: "./img-tshirt/l1.jpg", category: "tshirt", size: ["S","M","L"], color:["White"], inStock: 20, description:"Li-Ning L1 shirt, breathable material." },
+  { id: 117, name: "Li-Ning Shirt L2", price: 12, image: "./img-tshirt/l2.jpg", category: "tshirt", size: ["S","M","L"], color:["Blue"], inStock: 15, description:"Li-Ning L2 shirt, stylish and comfortable." },
+  { id: 118, name: "Li-Ning Shirt L3", price: 6, image: "./img-tshirt/l3.jpg", category: "tshirt", size: ["S","M","L"], color:["Red"], inStock: 10, description:"Li-Ning L3 shirt, lightweight and breathable." },
+  { id: 119, name: "Li-Ning Shirt L4", price: 6, image: "./img-tshirt/l4.jpg", category: "tshirt", size: ["S","M","L"], color:["Yellow"], inStock: 10, description:"Li-Ning L4 shirt, classic design." },
+  { id: 120, name: "Li-Ning Shirt L5", price: 6, image: "./img-tshirt/l5.jpg", category: "tshirt", size: ["S","M","L"], color:["Black"], inStock: 12, description:"Li-Ning L5 shirt, comfortable training shirt." },
+  { id: 121, name: "Li-Ning Shirt L6", price: 6, image: "./img-tshirt/l6.jpg", category: "tshirt", size: ["S","M","L"], color:["White"], inStock: 8, description:"Li-Ning L6 shirt, lightweight and soft." },
+  { id: 122, name: "Li-Ning Shirt L7", price: 6, image: "./img-tshirt/l7.jpg", category: "tshirt", size: ["S","M","L"], color:["Blue"], inStock: 10, description:"Li-Ning L7 shirt, comfortable fit." },
+  { id: 123, name: "Li-Ning Shirt L8", price: 6, image: "./img-tshirt/l8.jpg", category: "tshirt", size: ["S","M","L"], color:["Red"], inStock: 7, description:"Li-Ning L8 shirt, classic training shirt." },
+
+  // ================= Victor =================
+  { id: 124, name: "Victor Shirt V1", price: 10, image: "./img-tshirt/v1.jpg", category: "tshirt", size: ["S","M","L"], color:["White"], inStock: 12, description:"Victor V1 shirt, breathable and lightweight." },
+  { id: 125, name: "Victor Shirt V2", price: 10, image: "./img-tshirt/v2.jpg", category: "tshirt", size: ["S","M","L"], color:["Black"], inStock: 15, description:"Victor V2 shirt, comfortable and stylish." },
+  { id: 126, name: "Victor Shirt V3", price: 10, image: "./img-tshirt/v3.jpg", category: "tshirt", size: ["S","M","L"], color:["Blue"], inStock: 10, description:"Victor V3 shirt, perfect for training." },
+  { id: 127, name: "Victor Shirt V4", price: 10, image: "./img-tshirt/v4.jpg", category: "tshirt", size: ["S","M","L"], color:["Red"], inStock: 8, description:"Victor V4 shirt, classic design." },
+  { id: 128, name: "Victor Shirt V5", price: 10, image: "./img-tshirt/v5.jpg", category: "tshirt", size: ["S","M","L"], color:["White"], inStock: 10, description:"Victor V5 shirt, breathable fabric." },
+  { id: 129, name: "Victor Shirt V6", price: 10, image: "./img-tshirt/v6.jpg", category: "tshirt", size: ["S","M","L"], color:["Black"], inStock: 7, description:"Victor V6 shirt, lightweight and soft." },
+  { id: 130, name: "Victor Shirt V7", price: 10, image: "./img-tshirt/v7.jpg", category: "tshirt", size: ["S","M","L"], color:["Blue"], inStock: 8, description:"Victor V7 shirt, comfortable training shirt." },
+  { id: 131, name: "Victor Shirt V8", price: 10, image: "./img-tshirt/v8.jpg", category: "tshirt", size: ["S","M","L"], color:["Red"], inStock: 5, description:"Victor V8 shirt, classic style." },
+
+  // ================= Coach / Mizuno =================
+  { id: 132, name: "Coach T-shirt A1", price: 10, image: "./img-tshirt/a1.jpg", category: "tshirt", size: ["S","M","L"], color:["White"], inStock: 10, description:"Coach A1 shirt, lightweight and breathable." },
+  { id: 133, name: "Coach T-shirt A2", price: 10, image: "./img-tshirt/a2.jpg", category: "tshirt", size: ["S","M","L"], color:["Blue"], inStock: 12, description:"Coach A2 shirt, classic design." },
+  { id: 134, name: "Coach T-shirt A3", price: 10, image: "./img-tshirt/a3.jpg", category: "tshirt", size: ["S","M","L"], color:["Red"], inStock: 8, description:"Coach A3 shirt, comfortable fit." },
+  { id: 135, name: "Coach T-shirt A4", price: 10, image: "./img-tshirt/a4.jpg", category: "tshirt", size: ["S","M","L"], color:["Black"], inStock: 7, description:"Coach A4 shirt, classic style." },
+  { id: 136, name: "Coach T-shirt A5", price: 10, image: "./img-tshirt/a5.jpg", category: "tshirt", size: ["S","M","L"], color:["White"], inStock: 9, description:"Coach A5 shirt, breathable material." },
+  { id: 137, name: "Coach T-shirt A6", price: 10, image: "./img-tshirt/a6.jpg", category: "tshirt", size: ["S","M","L"], color:["Blue"], inStock: 8, description:"Coach A6 shirt, soft and comfortable." },
+  { id: 138, name: "Coach T-shirt A7", price: 10, image: "./img-tshirt/a7.jpg", category: "tshirt", size: ["S","M","L"], color:["Red"], inStock: 6, description:"Coach A7 shirt, classic design." },
+  { id: 139, name: "Coach T-shirt A8", price: 10, image: "./img-tshirt/a8.jpg", category: "tshirt", size: ["S","M","L"], color:["Black"], inStock: 5, description:"Coach A8 shirt, comfortable training shirt." },
+  { id: 140, name: "Babu Limited Edition Shirt", price: 19.99, image: "./img-new_product/babushirt.jpg", category: "new_product", size: ["S","M","L"], color:["Red","White"], inStock: 20, description:"Limited edition shirt, very comfortable and stylish." }
+];
+
+  // ===== Cart setup =====
+
+  // ===== PRODUCTS DATA =====
+
+  // ===== Get product ID from URL =====
+  const urlParams = new URLSearchParams(window.location.search);
+  const productId = parseInt(urlParams.get("id"));
+
+  const product = products.find(p => p.id === productId);
+
+  const container = document.getElementById("productDetail");
+
+  if (product) {
+    container.innerHTML = `
+      <div class="product-detail-card">
+        <img class="detail-img" src="${product.image}" alt="${product.name}">
+        <div class="detail-info">
+          <h2>${product.name}</h2>
+          <p>${product.description}</p>
+          <p>Price: $${product.price}</p>
+          <p>Available Sizes: ${product.size.join(", ")}</p>
+          <p>Available Colors: ${product.color.join(", ")}</p>
+          <p>In Stock: ${product.inStock}</p>
+
+          <button class="go-back" onclick="goBack()">← Go Back</button>
+          <button class="add-cart" data-id="${product.id}">Add to Cart</button>
+        </div>
+      </div>
+    `;
+  }
+
+  // ===== Add to Cart Functionality =====
+  document.addEventListener("click", (e) => {
+    if (e.target.classList.contains("add-cart") && product) {
+      const existing = cart.find(p => p.id === product.id);
+      if (existing) {
+        existing.quantity++;
+      } else {
+        cart.push({ ...product, quantity: 1 });
+      }
+      // Save cart to localStorage
+      localStorage.setItem("cart", JSON.stringify(cart));
+
+      alert("Added to cart!");
+    }
+  });
+
+  // ===== Go Back Function =====
+  function goBack() {
+    window.history.back();
+  }
+  </script>
+</body>
+</html>
